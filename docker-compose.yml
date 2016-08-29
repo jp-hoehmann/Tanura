@@ -1,0 +1,9 @@
+#
+# docker-compose configuration for tanura.
+#
+
+tanura:
+    build: .
+licode:
+    image: nuvanda/licode:latest
+

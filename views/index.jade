@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    nav
+        .left
+            .title-btn
+            .title-text
+            .title-btn
+        header.center
+            .toggle-btn.title-btn#left-btn
+                i(class='fa fa-bars')
+            .title-text#app-title=title
+            .toggle-btn.title-btn#users-btn
+                i(class='fa fa-users')
+            .toggle-btn.title-btn#right-btn
+                i(class='fa fa-ellipsis-v')
+        .right
+            .title-btn#back-btn
+                i(class='fa fa-chevron-left')
+            .title-text
+            .title-btn
+    #content
+        aside.left#chat
+            iframe(src='https://instant.leet.nu/room/tanura')
+        main.center
+            #main
+                #people
+                #presentation.hidden
+                    #whiteboard.presentation.card.literally.core
+            #list
+        aside.right#settings
+            .card
+                h5 Theme
+                h6 Styling options
+                p#colors
+            .card
+                h5 Presentation
+                h6 Presenter options
+
+                p#presenter
+                    p
+                        a#presentation-toggle
+                            | Open whiteboard
+                    p
+                        a#whiteboard-clear
+                            | Clear whiteboard
+                    p
+                        a#whiteboard-store
+                            | Store whiteboard
+
