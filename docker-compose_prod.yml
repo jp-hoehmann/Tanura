@@ -15,11 +15,13 @@ tanura1:
         - licode1:/media/docker/licode:ro
 licode1:
     env_file: prod.env
+    expose:
+        - "3000"
     extends:
         file: docker-compose.yml
         service: licode
     ports:
-        - "3000:3000"
+#       - "3000:3000"
         - "8080:8080"
         - "50000:50000/udp"
         - "50001:50001/udp"
