@@ -3,7 +3,7 @@
 #
 
 tanura1:
-    env_file: devel.env
+    env_file: prod.env
     extends:
         file: docker-compose.yml
         service: tanura
