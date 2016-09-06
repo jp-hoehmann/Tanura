@@ -15,7 +15,7 @@ tanura0:
         - .:/srv/www/tanura
         - /srv/www/tanura/node_modules
         - licode0:/media/docker/licode:ro
-licode:
+licode0:
     env_file: devel.env
     extends:
         file: docker-compose.yml
