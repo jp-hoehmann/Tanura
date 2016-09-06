@@ -17,11 +17,13 @@ tanura0:
         - licode0:/media/docker/licode:ro
 licode0:
     env_file: devel.env
+    export:
+        - "3000"
     extends:
         file: docker-compose.yml
         service: licode
     ports:
-        - "3000:3000"
+#       - "3000:3000"
         - "8080:8080"
         - "30000:30000/udp"
         - "30001:30001/udp"
