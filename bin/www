@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('tanura:server');
 var http = require('http');
+var https = require('https');
+var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +21,12 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
+var server = https.createServer(
+        {
+            key: fs.readFileSync('/srv/www/tanura/certs/localhost.localdomain.key.pem').toString(),
+            cert: fs.readFileSync('/srv/www/tanura/certs/localhost.localdomain.ceart.pem').toString()
+        }, app);
 
 /**
  * Listen on provided port, on all network interfaces.
