@@ -22,19 +22,19 @@ app.set('port', port);
  */
 
 // var server = http.createServer(app);
+var certs = '/srv/www/tanura/certs/';
 var server = https.createServer(
         {
             key:
                 fs
-                .readFileSync(
-                        '/srv/www/tanura/certs/localhost.localdomain.key.pem')
+                .readFileSync(certs + 'localhost.localdomain.key.pem')
                 .toString(),
             cert:
                 fs
-                .readFileSync(
-                        '/srv/www/tanura/certs/localhost.localdomain.cert.pem')
+                .readFileSync(certs + 'localhost.localdomain.cert.pem')
                 .toString()
-        }, app);
+        },
+        app);
 
 /**
  * Listen on provided port, on all network interfaces.
