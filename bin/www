@@ -24,8 +24,16 @@ app.set('port', port);
 // var server = http.createServer(app);
 var server = https.createServer(
         {
-            key: fs.readFileSync('/srv/www/tanura/certs/localhost.localdomain.key.pem').toString(),
-            cert: fs.readFileSync('/srv/www/tanura/certs/localhost.localdomain.cert.pem').toString()
+            key:
+                fs
+                .readFileSync(
+                        '/srv/www/tanura/certs/localhost.localdomain.key.pem')
+                .toString(),
+            cert:
+                fs
+                .readFileSync(
+                        '/srv/www/tanura/certs/localhost.localdomain.cert.pem')
+                .toString()
         }, app);
 
 /**
