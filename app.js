@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 
 var frontend = require('./routes/index');
 var nuve = require('./routes/nuve');
-var whiteboard = require('./routes/whiteboard');
 
 var app = express();
 
@@ -26,7 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', frontend);
 app.use('/nuve/', nuve);
-app.use('/whiteboard/', whiteboard);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
