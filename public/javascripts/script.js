@@ -182,32 +182,6 @@ window.onload = () => {
             canvas.clear();
             localStream.sendData({type: 'canvas-clear'})
         });
-    /*
-    document
-        .getElementById('whiteboard-load')
-        .addEventListener('click', () => {
-            var req = new XMLHttpRequest();
-            req.addEventListener('load', function() {
-                var snapshot = JSON.parse(this.responseText);
-                canvas.loadSnapshot(snapshot);
-                localStream.sendData({type: 'canvas-draw', data: snapshot});
-            });
-            req.open('POST', whiteboardUrl + 'get/', true);
-            req.setRequestHeader('Content-Type', 'application/json');
-            req.send(JSON.stringify({name: 'default'}));
-        });
-    */
-    document
-        .getElementById('whiteboard-store')
-        .addEventListener('click', () => {
-            var req = new XMLHttpRequest();
-            req.open('POST', whiteboardUrl + 'set/', true);
-            req.setRequestHeader('Content-Type', 'application/json');
-            req.send(JSON.stringify({
-                name: 'default', 
-                data: canvas.getSnapshot() 
-            }));
-        });
 
     // Fetch color scheme.
     var _ = localStorage.getItem('colorScheme');
