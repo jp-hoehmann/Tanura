@@ -12,7 +12,7 @@ var nuve = require('./routes/nuve');
 
 var app = express();
 
-// view engine setup
+// View engine setup.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -37,17 +37,19 @@ app.use(function(req, res, next) {
     }
 });
 
-// catch 404 and forward to error handler
+// Catch 404 and forward to error handler.
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-// error handlers
+/*
+ * Error handlers.
+ */
 
-// development error handler
-// will print stacktrace
+// Development error handler.
+// This error handler will print stacktraces.
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -58,8 +60,8 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+// Production error handler.
+// This error handler will not leak stacktraces to the user.
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

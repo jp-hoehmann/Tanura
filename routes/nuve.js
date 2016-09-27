@@ -1,18 +1,17 @@
-"use strict";
+'use strict';
 
 var debug = require('debug')('tanura:nuve');
-
 var express = require('express');
-var router = express.Router();
 
 var nuve = require('../nuve');
 var config = require('../licode_config');
 
+var router = express.Router();
 var myRoom;
 
 nuve.API.init(
-        config.nuve.superserviceID, 
-        config.nuve.superserviceKey, 
+        config.nuve.superserviceID,
+        config.nuve.superserviceKey,
         'http://licode:3000/');
 
 // Find the room called "default", creating it if it does not exist and store 

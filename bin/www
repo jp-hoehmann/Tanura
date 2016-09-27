@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
 var debug = require('debug')('tanura:server');
 var http = require('http');
@@ -55,12 +51,12 @@ function normalizePort(val) {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
+    // Named pipe.
     return val;
   }
 
   if (port >= 0) {
-    // port number
+    // Port number.
     return port;
   }
 
@@ -80,7 +76,7 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
+  // Handle specific listen errors with friendly messages.
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -106,3 +102,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+

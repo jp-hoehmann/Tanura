@@ -3,6 +3,8 @@
 #
 # Initialization routine for Tanura.
 #
+# TODO This should have more error handling.
+#
 
 sleep 2
 while ! [[ -f /media/docker/licode/licode_config.js ]]

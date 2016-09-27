@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     flex-direction: column;
@@ -6,29 +7,35 @@ body {
     overflow: hidden;
     transition: margin 0.15s ease;
 }
+
 body > * {
     display: flex;
     margin-left: -400px;
     margin-right: -600px;
     transition: margin 0.2s ease;
 }
+
 main.listview > * {
     transform: translateY(-100%);
 }
+
 main > * {
     height: 100%;
     transition: transform 0.2s ease;
 }
+
 nav {
     height: 48px;
     box-shadow: 0 1px 4px 2px rgba(0,0,0,0.75);
     z-index: 1;
 }
+
 nav > * {
     display: flex;
     box-sizing: border-box;
     padding: 4px 16px;
 }
+
 iframe {
     width: 100%;
     height: 100%;
@@ -37,6 +44,7 @@ iframe {
 .hidden, .loader, .bar {
     display: none!important;
 }
+
 .title-btn {
     padding: 10px;
     height: 20px;
@@ -44,20 +52,25 @@ iframe {
     font-size: 20px;
     text-align: center;
 }
+
 .title-text {
     flex: 1;
     padding: 10px 24px;
     font-size: 20px;
 }
+
 .left {
     width: 400px;
 }
+
 .center {
     flex: 1;
 }
+
 .right {
     width: 600px;
 }
+
 .card {
     box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.75);
     margin: 4px;
@@ -65,9 +78,11 @@ iframe {
     border: 2px;
     border-radius: 2px;
 }
+
 .card > * {
     margin-bottom: 16px;
 }
+
 .presentation {
     flex: 1;
     margin: 8px;
@@ -76,14 +91,17 @@ iframe {
 #close-pane-btn i {
     visibility: hidden;
 }
+
 /* This is broken. As a workaround the height is set via JS.
 #content {
     flex: 1;
 }
 */
+
 #main {
     display: flex;
 }
+
 #people {
     flex: 1;
     display: flex;
@@ -92,27 +110,33 @@ iframe {
     align-items: center;
     overflow: hidden;
 }
+
 #people > * {
     width: 192px;
     height: 192px;
     margin: 16px;
     box-shadow: -1px 1px 4px 2px rgba(0,0,0,0.75);
 }
+
 #people > * > * {
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%); 
 }
+
 #people > *, #people > * > * {
     overflow: hidden;
     border-radius: 48px;
 }
+
 #presentation {
     display: flex;
 }
+
 #chat {
     /* Fix for Chrome */
     display: flex;
     flex-direction: column;
 }
+
 #settings {
     display: flex;
     flex-wrap: wrap;
@@ -120,10 +144,12 @@ iframe {
     overflow-y: auto;
     box-sizing: border-box;
 }
+
 #settings > * {
     box-sizing: border-box;
     width: 280px;
 }
+
 /* Scroll-safe padding */
 #settings::after, #settings::before {
     content: "";
@@ -132,39 +158,53 @@ iframe {
     width: 100%;
 }
 
-/* Desktops */
+/*
+ * Desktops
+ */
+
 @media (min-width: 1281px) {
     body.right-expanded > * {
         margin-right: 0;
     }
+
     #back-btn {
         display: none;
     }
 }
 
-/* Desktops and Tablets */
+/*
+ * Desktops and Tablets
+ */
+
 @media (min-width: 601px) {
     body.left-expanded > * {
         margin-left: 0;
     }
 }
 
-/* Tablets and Phones */
+/*
+ * Tablets and Phones
+ */
+
 @media (max-width: 1280px) {
     body > * {
         margin-left: -320px;
         transition: margin 0.15s ease;
     }
+
     body.right-expanded {
         margin-right: 600px;
         margin-left: -600px;
     }
-    nav { 
+
+    nav {
         height: 64px; 
     }
+
     nav > * {
         padding: 12px 16px;
     }
+
     main > * {
         transition: transform 0.15s ease;
     }
@@ -172,6 +212,7 @@ iframe {
     .left { 
         width: 320px; 
     }
+
     .title-btn {
         padding: 8px;
         height: 24px;
@@ -180,22 +221,29 @@ iframe {
     }
 }
 
-/* Phones */
+/*
+ * Phones
+ */
+
 @media (max-width: 600px) {
     body > * {
         margin-right: -100vw;
     }
+
     body.left-expanded {
         margin-left: 320px;
         margin-right: -320px;
     }
+
     body.right-expanded {
         margin-right: 100vw;
         margin-left: -100vw;
     }
-    nav { 
+
+    nav {
         height: 56px; 
     }
+
     nav > * {
         padding: 8px;
     }
@@ -209,19 +257,27 @@ iframe {
     }
 }
 
-/* Devices in portrait mode */
+/*
+ * Devices in portrait mode
+ */
+
 @media (orientation: portrait) {
     #main {
         flex-direction: column;
     }
+
     #presentation {
         width: 100%;
     }
 }
 
-/* Devices in landscape mode */
+/*
+ * Devices in landscape mode
+ */
+
 @media (orientation: landscape) {
     #presentation {
         height: 100%;
     }
 }
+

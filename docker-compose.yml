@@ -1,5 +1,6 @@
+
 #
-# docker-compose configuration for tanura.
+# docker-compose configuration for Tanura.
 #
 
 tanura:
