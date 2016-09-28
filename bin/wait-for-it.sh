@@ -14,7 +14,7 @@
 # Variables #
 #############
 
-cmdname=$(basename $0)
+cmdname="$(basename $0)"
 
 ############
 # Heredocs #
@@ -94,7 +94,7 @@ wait_for_wrapper() {
     then
         timeout \
                 ${TIMEOUT} \
-                ${0} \
+                "${0}" \
                 --quiet \
                 --child \
                 --host=${HOST} \
@@ -103,7 +103,7 @@ wait_for_wrapper() {
     else
         timeout \
                 ${TIMEOUT} \
-                ${0} \
+                "${0}" \
                 --child \
                 --host=${HOST} \
                 --port=${PORT} \
