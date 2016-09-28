@@ -6,100 +6,97 @@ var http = require('http');
 var https = require('https');
 var fs = require('fs');
 
-/**
- * Get port from environment and store in Express.
+/*
+ * Node bootstrapping routine.
+ *
+ * This is the node part of Tanura's bootstrapping process. This script will 
+ * handle everything that needs to be done by node, before Tanura can run.
  */
 
+// Get port from environment and store in Express.
 var port = normalizePort(process.env.TANURAPORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
+// Create HTTP server.
 if (process.env.SSL) {
     var certs = '/srv/www/tanura/certs/';
     var server = https.createServer(
-            {
-                key:
-                    fs
-                    .readFileSync(certs + 'localhost.localdomain.key.pem')
-                    .toString(),
-                cert:
-                    fs
-                    .readFileSync(certs + 'localhost.localdomain.cert.pem')
-                    .toString()
-            },
-            app);
+        {
+            key:
+                fs
+                .readFileSync(certs + 'localhost.localdomain.key.pem')
+                .toString(),
+            cert:
+                fs
+                .readFileSync(certs + 'localhost.localdomain.cert.pem')
+                .toString()
+        },
+        app);
 } else {
     var server = http.createServer(app);
 }
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+// Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
+ * This will return the port number as an integer or the name of the named pipe 
+ * node communicates with as String. On failure, false will be returned.
  */
-
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+    var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // Named pipe.
-    return val;
-  }
+    if (isNaN(port)) {
+        // Named pipe.
+        return val;
+    }
 
-  if (port >= 0) {
-    // Port number.
-    return port;
-  }
+    if (port >= 0) {
+        // Port number.
+        return port;
+    }
 
-  return false;
+    return false;
 }
 
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-  // Handle specific listen errors with friendly messages.
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+    // Handle specific listen errors with friendly messages.
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
 }
 
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
 }
 

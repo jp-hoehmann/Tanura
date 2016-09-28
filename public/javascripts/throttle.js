@@ -3,9 +3,12 @@
 /*
  * Helper for throttling resize events.
  *
- * developer.mozilla.org/de/docs/Web/Events/resize
+ * As Tanura may have to do quite heavy lifting upon resize of the browser 
+ * window, depending on usage, this will add a new event, that will also occur 
+ * on resizes, but is rate-limited.
  */
 
+// developer.mozilla.org/de/docs/Web/Events/resize
 ;(function() {
     var throttle = function(type, name, obj) {
         obj = obj || window;
@@ -20,8 +23,6 @@
         };
         obj.addEventListener(type, func);
     };
-
-    /* init - you can init any event */
     throttle('resize', 'throttledResize');
 })();
 

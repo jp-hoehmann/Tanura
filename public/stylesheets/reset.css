@@ -1,6 +1,10 @@
 
-/* http://meyerweb.com/eric/tools/css/reset/ v2.0 | 20110126
- * License: none (public domain)
+/*
+ * Default style removal.
+ *
+ * This stylesheet aims to remove as much as possible of the browser specific 
+ * default styles, to ensure, that Tanura looks the same in any browser that 
+ * passes the acid test.
  */
 
 html,

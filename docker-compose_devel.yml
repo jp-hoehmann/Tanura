@@ -1,6 +1,8 @@
 
 #
-# docker-compose configuration for Tanura.
+# Development-specific docker-compose configuration for Tanura.
+#
+# Any configuration for Tanura development builds can be found here.
 #
 
 tanura0:

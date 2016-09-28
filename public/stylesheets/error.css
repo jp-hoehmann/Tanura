@@ -1,4 +1,11 @@
 
+/*
+ * Error styling.
+ *
+ * This is a minimal stylesheet, used to style an error, when Tanura is so 
+ * broken, that the actual app cannot be shown.
+ */
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;

@@ -1,11 +1,50 @@
 'use strict';
 
+/*
+ * Client entrypoint.
+ *
+ * This script contains all code necessary to bootstrap Tanura in a client.
+ */
+
+/**
+ * Base URL for requests to the Nuve backend.
+ */
 var nuveUrl = '/nuve/';
+
+/**
+ * Base URL for requests related to the whiteboard.
+ */
 var whiteboardUrl = '/whiteboard/';
+
+/**
+ * The Nuve room the client is connected to.
+ */
 var room;
+
+/**
+ * The local stream from the browser the client is connected to.
+ */
 var localStream;
+
+/**
+ * The canvas the whiteboard is set up in.
+ */
 var canvas;
+
+/**
+ * Fake resize indicator.
+ * Because of CSS bugs and limitations, Tanura will sometimes have to change 
+ * layout parameters manually in Js. As this happens after the resize, a second 
+ * resize event may be triggered to give other Js code the ability to react to 
+ * changes Tanura has made to the layout. In this case, this variable will be 
+ * set to true, to tell Tanura, that the resize event was a fake resize event 
+ * triggered by Tanura's own code and should be ignored.
+ */
 var fakeResize = false;
+
+/**
+ * Options that should be used to stream.
+ */
 var streamOpts = {
     audio: true, 
     video: true,
@@ -13,6 +52,14 @@ var streamOpts = {
     screen: false,
     videoSize: [384, 384, 384, 384]
 };
+
+/**
+ * The stream options Tanura will fall back to.
+ * These options will be used when establishing a stream with the default 
+ * options fails. This is usually due to the user not granting the necessary 
+ * permissions, the browser not supporting all necessary features, or is 
+ * blocking some of them due to security concerns.
+ */
 var fallbackStreamOpts = {
     audio: false,
     video: false,
@@ -20,14 +67,19 @@ var fallbackStreamOpts = {
     screen: false,
 };
 
-// Set a color scheme.
+/**
+ * Set a color scheme.
+ * This will apply a given color scheme to the app.
+ */
 var colorize = (colorScheme) => {
     var e = document.getElementsByTagName('nav')[0];
     e.style.backgroundColor = '#' + colorScheme[1];
     e.className = colorScheme[2] ? 'inverted' : '';
 }
 
-// Initialise the whiteboard.
+/**
+ * This will initialize the whiteboard on the canvas from a given snapshot.
+ */
 var mkCanvas = (snapshot) => {
     canvas = LC.init(
             document.getElementById('whiteboard'), 
@@ -75,12 +127,10 @@ window.onload = () => {
             fakeResize = false;
         }
     }
-
-    /* setTimeout to wait for the animations. */
     window.addEventListener('throttledResize', f);
-
     f();
 
+    // Event handlers for the buttons in the menu bar.
     leftBtn.addEventListener(
             'click', 
             () => {
@@ -170,6 +220,7 @@ window.onload = () => {
         e.appendChild(_);
     }
 
+    // Event hander for the buttons that control the whiteboard.
     document.getElementById('presentation-toggle').addEventListener('click', () => {
         document.getElementById('presentation-toggle').textContent 
             = document.getElementById('presentation').classList.toggle('hidden')
@@ -193,9 +244,7 @@ window.onload = () => {
         var token = this.responseText;
         console.log(token);
         room = Erizo.Room({token: token});
-        
         var join = function() {
-
             // Add a single stream to the DOM.
             var addStream = function(stream, options) {
                 if (stream.hasVideo()) {
@@ -236,6 +285,7 @@ window.onload = () => {
                 }
             };
 
+            // This will run as soon a signalling if fully initialized.
             room.addEventListener('room-connected', function(roomEvent) {
                 // If we are the only one in the room, add a fresh whiteboard.
                 if (roomEvent.streams.length == 0) { 
@@ -248,32 +298,43 @@ window.onload = () => {
                 subscribeToStreams(roomEvent.streams);
             });
 
+            // This will run whenever the client was successfully subscribed to 
+            // a new stream.
             room.addEventListener(
                     'stream-subscribed', 
                     function(_) { addStream(_.stream); });
 
+            // This will run whenever a new stream was added to the room.
             room.addEventListener('stream-added', function(streamEvent) {
                 if (localStream.getID() != streamEvent.stream.getID()) {
                     subscribeToStreams([streamEvent.stream]);
                 }
 
-                // Send the newcomer the current state of the whiteboard.
+                // Send the newcomer the current state of the whiteboard. This 
+                // is wasteful as the new client will get the state by each 
+                // other client, but I don't know a better way to do it. The way 
+                // forward will likely be to have the server control the 
+                // whiteboard.
                 localStream.sendData({
                     type: 'canvas-init',
                     data: canvas.getSnapshot()
                 });
             });
 
+            // This will run whenever a stream disappeared from the room.
             room.addEventListener('stream-removed', function(streamEvent) {
                 document
                     .getElementById('videoEntry_' + streamEvent.stream.getID())
                     .remove();
             });
 
+            // This will run if opening the stream has failed.
             room.addEventListener('stream-failed', function(streamEvent){
+                // FIXME This needs error handling.
                 console.log('Stream Failed... uh-oh');
             });
 
+            // All set. Connect to the room and attach the local stream.
             room.connect();
             addStream(localStream, {speaker: false});
         }
@@ -298,6 +359,8 @@ window.onload = () => {
     });
     req.open('POST', nuveUrl + 'createToken/', true);
     req.setRequestHeader('Content-Type', 'application/json');
+
+    // Send the room-token request.
     req.send(JSON.stringify({username: 'user', role: 'presenter'}));
 }
 

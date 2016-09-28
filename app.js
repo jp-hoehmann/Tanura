@@ -10,6 +10,12 @@ var bodyParser = require('body-parser');
 var frontend = require('./routes/index');
 var nuve = require('./routes/nuve');
 
+/*
+ * App entry point.
+ *
+ * This is the main file of the node app, everything is started from here.
+ */
+
 var app = express();
 
 // View engine setup.
@@ -23,9 +29,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Routes setup.
 app.use('/', frontend);
 app.use('/nuve/', nuve);
 
+// HTTP headers added to every response.
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE');
@@ -48,8 +56,7 @@ app.use(function(req, res, next) {
  * Error handlers.
  */
 
-// Development error handler.
-// This error handler will print stacktraces.
+// Development error handler. This error handler will print stacktraces.
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -60,8 +67,8 @@ if (app.get('env') === 'development') {
     });
 }
 
-// Production error handler.
-// This error handler will not leak stacktraces to the user.
+// Production error handler. This error handler will not leak stacktraces to the 
+// user.
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

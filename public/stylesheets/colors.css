@@ -1,4 +1,10 @@
 
+/*
+ * Color scheme.
+ *
+ * This stylesheet defines all colors used by Tanura.
+ */
+
 .primary, body {
     color: rgba(0, 0, 0, 0.87);
 }

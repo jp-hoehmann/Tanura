@@ -1,7 +1,10 @@
 #!/bin/bash
 
 #
-# Use this script to test if a given TCP host/port are available.
+# Wait until a given TCP service is available.
+#
+# This script can wait for TCP service to appear on an arbitrary host and port 
+# with an optional timeout.
 #
 # TODO Decapitalize all variable names.
 # FIXME This needs error handling.

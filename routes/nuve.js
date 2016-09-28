@@ -6,9 +6,25 @@ var express = require('express');
 var nuve = require('../nuve');
 var config = require('../licode_config');
 
+/*
+ * Nuve routes.
+ *
+ * This defines the route necessary to communicate with the Nuve backend
+ */
+
+/**
+ * The router for this module.
+ */
 var router = express.Router();
+
+/**
+ * The room this instance of Tanura is connected to.
+ *
+ * TODO Multiroom-support.
+ */
 var myRoom;
 
+// Initialize the communication layer for the Nuve backend.
 nuve.API.init(
         config.nuve.superserviceID,
         config.nuve.superserviceKey,
@@ -33,14 +49,14 @@ nuve.API.getRooms(function(roomlist) {
     }
 });
 
-// Get a list of rooms.
+// GET a list of rooms.
 router.get('/getRooms/', function(req, res) {
     nuve.API.getRooms(function(rooms) {
         res.send(rooms);
     });
 });
 
-// Get the users in a specific room.
+// GET the users in a specific room.
 router.get('/getUsers/:room', function(req, res) {
     var room = req.params.room;
     nuve.API.getUsers(room, function(users) {
@@ -48,7 +64,8 @@ router.get('/getUsers/:room', function(req, res) {
     });
 });
 
-// Get a token for tanuras room.
+// POST Access info. This should check whether the client is allowed in and 
+// return a token if so. Currently no permission checking is implemented.
 router.post('/createToken/', function(req, res) {
     var room = myRoom;
     var username = req.body.username;

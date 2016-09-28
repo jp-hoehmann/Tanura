@@ -2,6 +2,8 @@
 #
 # Production-specific docker-compose configuration for Tanura.
 #
+# Any configuration for Tanura production builds can be found here.
+#
 
 tanura1:
     env_file: prod.env

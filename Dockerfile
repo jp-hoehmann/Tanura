@@ -1,6 +1,8 @@
 
 #
-# Docker file for tanura.
+# Docker file for Tanura.
+#
+# This file configures the container for Tanura.
 #
 
 FROM node:4

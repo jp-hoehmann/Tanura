@@ -1,4 +1,10 @@
 
+/*
+ * Main stylesheet.
+ *
+ * This contains all styling information essential to Tanura.
+ */
+
 body {
     display: flex;
     flex-direction: column;
