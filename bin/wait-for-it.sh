@@ -22,16 +22,27 @@ cmdname=$(basename $0)
 
 read -r -d '' usage << EOF
 
-Usage:
-    $cmdname host:port [-s] [-t timeout] [-- command args]
-    -h HOST | --host=HOST       Host or IP under test
-    -p PORT | --port=PORT       TCP port under test
-                                Alternatively, you specify the host and port as host:port
-    -s | --strict               Only execute subcommand if the test succeeds
-    -q | --quiet                Don't output any status messages
-    -t TIMEOUT | --timeout=TIMEOUT
-                                Timeout in seconds, zero for no timeout
-    -- COMMAND ARGS             Execute command with args after the test finishes
+Wait until a TCP service becomes available.
+
+Syntax:
+    ${cmdname} host:port [-s] [-q] [-t timeout] [-- command args]
+
+Description:
+    This script will execute a given command as soon as a given TCP service is
+    available. It is additionally possible to specify a timeout.
+
+Parameters:
+    -s, --strict
+        Only execute subcommand if the test succeeds
+
+    -q, --quiet
+        Don't output any status messages
+
+    -t TIMEOUT, --timeout=TIMEOUT
+        Timeout in seconds, zero for no timeout
+
+    -- COMMAND ARGS
+        Execute command with args after the test finishes
 
 EOF
 
