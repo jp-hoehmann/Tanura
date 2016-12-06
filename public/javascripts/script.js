@@ -210,7 +210,7 @@ window.onload = () => {
 
             // Don't attach to the local stream. For development purposes it is 
             // nicer if the users own stream is attached remotely too.
-            addStream(localStream, {speaker: false});
+            //addStream(localStream, {speaker: false});
         }
 
         // Get local media.
