@@ -175,19 +175,21 @@ window.onload = () => {
 
             // This will run whenever a new stream was added to the room.
             room.addEventListener('stream-added', function(streamEvent) {
-                if (localStream.getID() != streamEvent.stream.getID()) {
-                    subscribeToStreams([streamEvent.stream]);
-                }
+                // Attach to the new stream.
+                subscribeToStreams([streamEvent.stream]);
 
-                // Send the newcomer the current state of the whiteboard. This 
-                // is wasteful as the new client will get the state by each 
-                // other client, but I don't know a better way to do it. The way 
-                // forward will likely be to have the server control the 
-                // whiteboard.
-                localStream.sendData({
-                    type: 'canvas-init',
-                    data: canvas.getSnapshot()
-                });
+                // If the new stream isn't our own stream.
+                if (localStream.getID() != streamEvent.stream.getID()) {
+                    // Send the newcomer the current state of the whiteboard. 
+                    // This is wasteful as the new client will get the state by 
+                    // each other client, but I don't know a better way to do 
+                    // it. The way forward will likely be to have the server 
+                    // control the whiteboard.
+                    localStream.sendData({
+                        type: 'canvas-init',
+                        data: canvas.getSnapshot()
+                    });
+                }
             });
 
             // This will run whenever a stream disappeared from the room.
@@ -203,8 +205,11 @@ window.onload = () => {
                 console.log('Stream Failed... uh-oh');
             });
 
-            // All set. Connect to the room and attach the local stream.
+            // All set. Connect to the room.
             room.connect();
+
+            // Don't attach to the local stream. For development purposes it is 
+            // nicer if the users own stream is attached remotely too.
             addStream(localStream, {speaker: false});
         }
 
