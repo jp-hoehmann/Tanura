@@ -13,9 +13,14 @@ var express = require('express');
  */
 var router = express.Router();
 
-// GET the app.
+// GET the demo app.
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Test Page' });
+});
+
+// GET the HTML fragment listing all required scripts and style sheets.
+router.get('/tanura.html.frag', function(req, res, next) {
+    res.render('bootstrap', {});
 });
 
 module.exports = router;
