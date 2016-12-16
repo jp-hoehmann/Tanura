@@ -81,31 +81,38 @@ var mkCanvas = (snapshot) => {
     }));
 }
 
-window.onload = () => {
-    var body = document.getElementsByTagName('body')[0];
+var body = document.getElementsByTagName('body')[0];
 
-    // Manually calculate the size of some elements to work around flexbox 
-    // issues and limitations.
-    var f = () => {
-        if (!fakeResize) {
+// Manually calculate the size of some elements to work around flexbox 
+// issues and limitations.
+var f = () => {
+    if (!fakeResize) {
 
-            // Wait for transitions.
-            setTimeout(() => {
-                /*
-                 * There is currently no code here, but this will be needed 
-                 * again in the future.
-                 */
+        // Wait for transitions.
+        setTimeout(() => {
+            /*
+             * There is currently no code here, but this will be needed 
+             * again in the future.
+             */
 
-                // Pass another resize for Literallycanvas.
-                fakeResize = true;
-                dispatchEvent(new Event('resize'));
-            }, 200);
-        } else {
-            fakeResize = false;
-        }
+            // Pass another resize for Literallycanvas.
+            fakeResize = true;
+            dispatchEvent(new Event('resize'));
+        }, 200);
+    } else {
+        fakeResize = false;
     }
-    window.addEventListener('throttledResize', f);
-    f();
+}
+window.addEventListener('throttledResize', f);
+f();
+
+// Connect to Tanura.
+var connect = () => {
+    // Wait for Erizo to load.
+    if (typeof Erizo === 'undefined' || Erizo == null) {
+        setTimeout(connect, 100);
+        return;
+    }
 
     // Prepare a request for a room token.
     var req = new XMLHttpRequest();
@@ -237,4 +244,6 @@ window.onload = () => {
     // Send the room-token request.
     req.send(JSON.stringify({username: 'user', role: 'presenter'}));
 }
+
+connect();
 
