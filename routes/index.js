@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 // GET the HTML fragment listing all required scripts and style sheets.
 router.get('/tanura.html.frag', function(req, res, next) {
-    res.render('bootstrap', {});
+    res.render('bootstrap', { base: req.query.base });
 });
 
 module.exports = router;
