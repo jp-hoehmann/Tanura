@@ -6,8 +6,11 @@
  * This script will bootstrap Tanura into an application.
  */
 
+var tanura = {
+    url: /.*\//.exec(document.currentScript.src)[0]
+};
+
 (function() {
-    var baseUrl = /.*\//.exec(document.currentScript.src)[0];
     var request = new XMLHttpRequest();
     request.addEventListener('load', function() {
         var replaceScriptNodes = node => {
@@ -35,7 +38,7 @@
     });
     request.responseType = 'text';
     request.open(
-        'GET', baseUrl + 'tanura.html.frag?base=' + baseUrl);
+        'GET', tanura.url + 'tanura.html.frag?base=' + tanura.url);
     request.send();
 })()
 
