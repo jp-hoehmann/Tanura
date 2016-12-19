@@ -6,6 +6,12 @@
  * This script will bootstrap Tanura into an application.
  */
 
+/**
+ * Globally available information about Tanura.
+ *
+ * This object contains information about Tanura, that is available to the 
+ * hosting website.
+ */
 var tanura = {
     url: /.*\//.exec(document.currentScript.src)[0]
 };
