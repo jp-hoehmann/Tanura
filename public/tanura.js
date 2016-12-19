@@ -7,6 +7,7 @@
  */
 
 (function() {
+    var baseUrl = /.*\//.exec(document.currentScript.src)[0];
     var request = new XMLHttpRequest();
     request.addEventListener('load', function() {
         var replaceScriptNodes = node => {
@@ -34,7 +35,7 @@
     });
     request.responseType = 'text';
     request.open(
-        'GET', /.*\//.exec(document.currentScript.src)[0] + 'tanura.html.frag');
+        'GET', baseUrl + 'tanura.html.frag?base=' + baseUrl);
     request.send();
 })()
 
