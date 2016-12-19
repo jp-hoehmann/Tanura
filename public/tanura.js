@@ -33,7 +33,8 @@
         replaceScriptNodes(document.getElementById('tanura-src'));
     });
     request.responseType = 'text';
-    request.open('GET', 'tanura.html.frag');
+    request.open(
+        'GET', /.*\//.exec(document.currentScript.src)[0] + 'tanura.html.frag');
     request.send();
 })()
 
