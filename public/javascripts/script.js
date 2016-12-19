@@ -9,12 +9,12 @@
 /**
  * Base URL for requests to the Nuve backend.
  */
-var nuveUrl = '/nuve/';
+var nuveUrl = tanura.url + 'nuve/';
 
 /**
  * Base URL for requests related to the whiteboard.
  */
-var whiteboardUrl = '/whiteboard/';
+var whiteboardUrl = tanura.url + 'whiteboard/';
 
 /**
  * The Nuve room the client is connected to.
