@@ -13,7 +13,10 @@
  * hosting website.
  */
 var tanura = {
-    url: /.*\//.exec(document.currentScript.src)[0]
+    url: /.*\//.exec(document.currentScript.src)[0],
+    nuve: null,
+    erizo: null,
+    whiteboard: null
 };
 
 (function() {
