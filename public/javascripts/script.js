@@ -29,7 +29,12 @@ tanura.whiteboard = {
     canvas: null
 };
 
-(function() {
+/**
+ * Tanura init routine.
+ */
+tanura.run = function() {
+    var _ = tanura.options;
+
     /**
      * Fake resize indicator.  Because of CSS bugs and limitations, Tanura will 
      * sometimes have to change layout parameters manually in Js. As this 
@@ -45,11 +50,10 @@ tanura.whiteboard = {
      * Options that should be used to stream.
      */
     var streamOpts = {
-        audio: true, 
-        video: true,
+        audio: !! _.audio,
+        video: !! _.video,
         data: true,
         screen: false,
-        videoSize: [384, 384, 384, 384]
     };
 
     /**
@@ -285,6 +289,7 @@ tanura.whiteboard = {
     }
 
     connect();
+}
 
-})();
-
+// Run, if initialisation is done already.
+if (tanura.options) { tanura.run(); }
