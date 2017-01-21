@@ -14,10 +14,22 @@
  */
 var tanura = {
     url: /.*\//.exec(document.currentScript.src)[0],
+    options: null,
     nuve: null,
     erizo: null,
     whiteboard: null
 };
+
+/**
+ * Initialize Tanura.
+ */
+tanura.init = (_) => {
+    tanura.options = _ || {};
+
+    // Start Tanura, if everything is loaded already. If Tanura is still 
+    // loading, it will automatically launch when ready.
+    if (tanura.run) { tanura.run(); }
+}
 
 (function() {
     var request = new XMLHttpRequest();
