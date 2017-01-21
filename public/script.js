@@ -10,6 +10,7 @@
  * Bootstrapping routine.
  */
 window.onload = () => {
-    console.log("Tanura demo.");
+    console.log("Initializing Tanura...");
+    tanura.init({audio: true, video: true});
 }
 
