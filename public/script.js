@@ -11,6 +11,6 @@
  */
 window.onload = () => {
     console.log("Initializing Tanura...");
-    tanura.init({audio: true, video: true});
+    tanura.init({video: true});
 }
 
