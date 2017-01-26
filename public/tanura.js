@@ -26,8 +26,9 @@ var tanura = {
 /**
  * Initialize Tanura.
  */
-tanura.init = (_) => {
+tanura.init = (_, f) => {
     tanura.options = _ || {};
+    if (f) { tanura.events.init.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.

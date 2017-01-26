@@ -195,6 +195,9 @@ tanura.run = function() {
                         tanura.nuve.room.publish(
                             tanura.erizo.localStream, {maxVideoBW: 300});
                         subscribeToStreams(roomEvent.streams);
+
+                        // Init done, run callback.
+                        for (var i of tanura.events.init) { i(); }
                     });
 
                 // This will run whenever the client was successfully subscribed 
