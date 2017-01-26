@@ -15,6 +15,7 @@
 var tanura = {
     url: /.*\//.exec(document.currentScript.src)[0],
     options: null,
+    events: {},
     nuve: null,
     erizo: null,
     whiteboard: null
