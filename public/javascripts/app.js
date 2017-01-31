@@ -7,16 +7,23 @@
  */
 
 /*
+ * Check if an event exists.
+ *
+ * When given an event name, this function will check, if there is an entry in 
+ * tanura.eventHandler.events for that name, that has the methods required.
+ */
+tanura.eventHandler.check = (x) =>
+    ((_) => !! _[x] && Array.isArray(_[x]))(tanura.eventHandler.events);
+
+/*
  * Fire an event.
  *
  * When given an event name, this function will run all callbacks for that 
  * event. Exit is true on success, false otherwise.
  */
 tanura.eventHandler.fire = (x) =>
-    ((_) =>
-        ! (! _[x]
-            || ! _[x].forEach
-            || _[x].forEach((i) => i())))(tanura.eventHandler.events);
+    tanura.eventHandler.check(x)
+        && ! tanura.eventHandler.events[x].forEach((i) => i());
 
 /*
  * Register a callback for an event.
@@ -25,6 +32,5 @@ tanura.eventHandler.fire = (x) =>
  * true on success, false otherwise.
  */
 tanura.eventHandler.register = (x, f) =>
-    ((_) =>
-        ! (! _[x] || ! _[x].push || _[x].push(f)))(tanura.eventHandler.events);
+    tanura.eventHandler.check(x) && ! tanura.eventHandler.events[x].push(f);
 
