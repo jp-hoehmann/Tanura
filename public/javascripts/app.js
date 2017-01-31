@@ -16,14 +16,22 @@ tanura.eventHandler.check = (x) =>
     ((_) => !! _[x] && Array.isArray(_[x]))(tanura.eventHandler.events);
 
 /*
+ * Safely perform something on an event.
+ *
+ * This will check if a given event exists and call a given function on it, if 
+ * it does. The return value indicates if the event was found.
+ */
+tanura.eventHandler.safe = (x, f) =>
+    tanura.eventHandler.check(x) && ! f(tanura.eventHandler.events[x]) || true;
+
+/*
  * Fire an event.
  *
  * When given an event name, this function will run all callbacks for that 
  * event. Exit is true on success, false otherwise.
  */
 tanura.eventHandler.fire = (x) =>
-    tanura.eventHandler.check(x)
-        && ! tanura.eventHandler.events[x].forEach((i) => i());
+    tanura.eventHandler.safe(x, (_) => _.forEach((i) => i()));
 
 /*
  * Register a callback for an event.
@@ -32,5 +40,5 @@ tanura.eventHandler.fire = (x) =>
  * true on success, false otherwise.
  */
 tanura.eventHandler.register = (x, f) =>
-    tanura.eventHandler.check(x) && ! tanura.eventHandler.events[x].push(f);
+    tanura.eventHandler.safe(x, (_) => _.push(f));
 
