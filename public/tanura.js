@@ -15,8 +15,10 @@
 var tanura = {
     url: /.*\//.exec(document.currentScript.src)[0],
     options: null,
-    events: {
-        init: []
+    eventHandler: {
+        events: {
+            init: []
+        }
     },
     nuve: null,
     erizo: null,
@@ -28,7 +30,7 @@ var tanura = {
  */
 tanura.init = (_, f) => {
     tanura.options = _ || {};
-    if (f) { tanura.events.init.push(f); }
+    if (f) { tanura.eventHandler.events.init.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
