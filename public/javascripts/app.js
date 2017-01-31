@@ -12,8 +12,9 @@
  * When given an event name, this function will check, if there is an entry in 
  * tanura.eventHandler.events for that name, that has the methods required.
  */
-tanura.eventHandler.check = (x) =>
-    ((_) => !! _[x] && Array.isArray(_[x]))(tanura.eventHandler.events);
+tanura.eventHandler.check = function(x) {
+    return !! this[x] && Array.isArray(this[x]);
+}.bind(tanura.eventHandler.events)
 
 /*
  * Safely perform something on an event.
@@ -21,8 +22,9 @@ tanura.eventHandler.check = (x) =>
  * This will check if a given event exists and call a given function on it, if 
  * it does. The return value indicates if the event was found.
  */
-tanura.eventHandler.safe = (x, f) =>
-    tanura.eventHandler.check(x) && ! f(tanura.eventHandler.events[x]) || true;
+tanura.eventHandler.safe = function(x, f) {
+    return this.check(x) && ! f(this.events[x]) || true;
+}.bind(tanura.eventHandler)
 
 /*
  * Fire an event.
