@@ -95,10 +95,8 @@ tanura.run = function() {
 
             // Wait for transitions.
             setTimeout(() => {
-                /*
-                 * There is currently no code here, but this will be needed 
-                 * again in the future.
-                 */
+                // Fire the resize-event.
+                tanura.eventHandler.fire('resize');
 
                 // Pass another resize for Literallycanvas.
                 fakeResize = true;
