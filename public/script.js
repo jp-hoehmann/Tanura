@@ -13,6 +13,13 @@ window.onload = () => {
     console.log("Initializing Tanura...");
     tanura.init(
         {video: true},
-        () => { console.log("Initialized."); });
+        () => {
+            console.log("Initialized.");
+
+            // Example of how to handle Tanura's internally generated events.
+            tanura.eventHandler.register(
+                    'resize',
+                    () => console.log("Caught a resize."));
+        });
 }
 

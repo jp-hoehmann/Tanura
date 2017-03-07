@@ -18,6 +18,7 @@ var tanura = {
     eventHandler: {
         events: {
             client-initialized: [],
+            client-resized: [],
             data-received: [],
             fallbackmedia-failed: [],
             fallbackmedia-opened: [],

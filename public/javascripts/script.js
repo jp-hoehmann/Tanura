@@ -95,10 +95,8 @@ tanura.run = function() {
 
             // Wait for transitions.
             setTimeout(() => {
-                /*
-                 * There is currently no code here, but this will be needed 
-                 * again in the future.
-                 */
+                // Fire the resize-event.
+                tanura.eventHandler.fire('resize');
 
                 // Pass another resize for Literallycanvas.
                 fakeResize = true;
@@ -123,7 +121,7 @@ tanura.run = function() {
         var req = new XMLHttpRequest();
         req.addEventListener('load', function() {
             var token = this.responseText;
-            console.log(token);
+            tanura.log(token);
             tanura.nuve.room = Erizo.Room({token: token});
             var join = function() {
                 // Add a single stream to the DOM.
@@ -147,7 +145,7 @@ tanura.run = function() {
                             .addEventListener(
                                     'bandwidth-alert',
                                     function(e) {
-                                        console.log(
+                                        tanura.log(
                                                 'Bandwidth Alert',
                                                 e.msg,
                                                 e.bandwidth);
@@ -156,25 +154,25 @@ tanura.run = function() {
                             switch(e.msg.type) {
                                 case 'canvas-clear':
                                     tanura.whiteboard.canvas.clear();
-                                    console.log('Cleared the whiteboard.');
+                                    tanura.log('Cleared the whiteboard.');
                                     break;
                                 case 'canvas-draw':
                                     tanura
                                         .whiteboard
                                         .canvas
                                         .loadSnapshot(e.msg.data);
-                                    console.log('Loaded a whiteboard change.');
+                                    tanura.log('Loaded a whiteboard change.');
                                     break;
                                 case 'canvas-init':
                                     if (!tanura.whiteboard.canvas) { 
                                         mkCanvas(e.msg.data); 
                                     }
-                                    console.log(
+                                    tanura.log(
                                             'Created canvas from existing '
                                             + 'snapshot.');
                                     break;
                                 default:
-                                    console.log(
+                                    tanura.log(
                                             'Ignoring packet of unknown type.');
                             }
                         });
@@ -188,7 +186,7 @@ tanura.run = function() {
                         // whiteboard.
                         if (roomEvent.streams.length == 0) {
                             mkCanvas(); 
-                            console.log('Created new canvas.');
+                            tanura.log('Created new canvas.');
                         }
 
                         // Publish the local stream.
@@ -243,7 +241,7 @@ tanura.run = function() {
                 tanura.nuve.room.addEventListener(
                     'stream-failed', function(streamEvent) {
                         // FIXME This needs error handling.
-                        console.log('Stream Failed... uh-oh');
+                        tanura.log('Stream Failed... uh-oh');
                     });
 
                 // All set. Connect to the room.
@@ -278,7 +276,7 @@ tanura.run = function() {
                         .erizo
                         .localStream
                         .addEventListener('access-denied', function(event) {
-                            console.log('Stream creation failed.');
+                            tanura.log('Stream creation failed.');
                         });
                     tanura.erizo.localStream.init();
                 });
