@@ -17,27 +17,27 @@ var tanura = {
     options: null,
     eventHandler: {
         events: {
-            client-initialized: [],
-            client-resized: [],
-            data-received: [],
-            fallbackmedia-failed: [],
-            fallbackmedia-opened: [],
-            localstream-failed: [],
-            localstream-created: [],
-            media-opened: [],
-            media-failed: [],
-            room-connected: [],
-            room-connecting: [],
-            stream-added: [],
-            stream-opened: [],
-            stream-removed: [],
-            stream-throttled: [],
-            whiteboard-changed: [],
-            whiteboard-cleared: [],
-            whiteboard-created: [],
-            whiteboard-edited: [],
-            whiteboard-loaded: [],
-            whiteboard-updated: []
+            client_initialized: [],
+            client_resized: [],
+            data_received: [],
+            fallbackmedia_failed: [],
+            fallbackmedia_opened: [],
+            localstream_failed: [],
+            localstream_created: [],
+            media_opened: [],
+            media_failed: [],
+            room_connected: [],
+            room_connecting: [],
+            stream_added: [],
+            stream_opened: [],
+            stream_removed: [],
+            stream_throttled: [],
+            whiteboard_changed: [],
+            whiteboard_cleared: [],
+            whiteboard_created: [],
+            whiteboard_edited: [],
+            whiteboard_loaded: [],
+            whiteboard_updated: []
         }
     },
     nuve: null,
@@ -50,7 +50,7 @@ var tanura = {
  */
 tanura.init = (_, f) => {
     tanura.options = _ || {};
-    if (f) { tanura.eventHandler.events.client-initialized.push(f); }
+    if (f) { tanura.eventHandler.events.client_initialized.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
