@@ -197,7 +197,7 @@ tanura.run = function() {
                         subscribeToStreams(roomEvent.streams);
 
                         // Init done, run callback.
-                        tanura.eventHandler.fire('init');
+                        tanura.eventHandler.fire('initialized');
                     });
 
                 // This will run whenever the client was successfully subscribed 

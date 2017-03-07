@@ -17,9 +17,9 @@ var tanura = {
     options: null,
     eventHandler: {
         events: {
-            connect: [],
+            connected: [],
             data: [],
-            init: [],
+            initialized: [],
             whiteboard-changed: [],
             whiteboard-cleared: [],
             whiteboard-created: [],
@@ -38,7 +38,7 @@ var tanura = {
  */
 tanura.init = (_, f) => {
     tanura.options = _ || {};
-    if (f) { tanura.eventHandler.events.init.push(f); }
+    if (f) { tanura.eventHandler.events.initialized.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
