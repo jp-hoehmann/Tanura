@@ -21,6 +21,7 @@ var tanura = {
             whiteboard-changed: [],
             whiteboard-cleared: [],
             whiteboard-created: [],
+            whiteboard-edited: [],
             whiteboard-loaded: []
         }
     },
