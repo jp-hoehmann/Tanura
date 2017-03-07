@@ -19,7 +19,7 @@ var tanura = {
         events: {
             connected: [],
             connecting: [],
-            data: [],
+            data-received: [],
             initialized: [],
             whiteboard-changed: [],
             whiteboard-cleared: [],
