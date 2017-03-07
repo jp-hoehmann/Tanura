@@ -18,6 +18,7 @@ var tanura = {
     eventHandler: {
         events: {
             init: [],
+            whiteboard-changed: [],
             whiteboard-cleared: [],
             whiteboard-created: [],
             whiteboard-loaded: []
