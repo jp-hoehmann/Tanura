@@ -21,6 +21,7 @@ var tanura = {
             connecting: [],
             data-received: [],
             initialized: [],
+            stream-added: [],
             whiteboard-changed: [],
             whiteboard-cleared: [],
             whiteboard-created: [],
