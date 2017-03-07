@@ -17,7 +17,8 @@ var tanura = {
     options: null,
     eventHandler: {
         events: {
-            init: []
+            init: [],
+            whiteboard-cleared: []
         }
     },
     nuve: null,
