@@ -23,6 +23,7 @@ var tanura = {
             initialized: [],
             localstream-created: [],
             localstream-failed: [],
+            media-opened: [],
             stream-added: [],
             stream-opened: [],
             stream-removed: [],
