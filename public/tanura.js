@@ -17,16 +17,16 @@ var tanura = {
     options: null,
     eventHandler: {
         events: {
-            connected: [],
-            connecting: [],
+            client-initialized: [],
             data-received: [],
             fallbackmedia-failed: [],
             fallbackmedia-opened: [],
-            initialized: [],
             localstream-failed: [],
             localstream-created: [],
             media-opened: [],
             media-failed: [],
+            room-connected: [],
+            room-connecting: [],
             stream-added: [],
             stream-opened: [],
             stream-removed: [],
@@ -49,7 +49,7 @@ var tanura = {
  */
 tanura.init = (_, f) => {
     tanura.options = _ || {};
-    if (f) { tanura.eventHandler.events.initialized.push(f); }
+    if (f) { tanura.eventHandler.events.client-initialized.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
