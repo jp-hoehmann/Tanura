@@ -30,6 +30,7 @@ var tanura = {
             stream-added: [],
             stream-opened: [],
             stream-removed: [],
+            stream-throttled: [],
             whiteboard-changed: [],
             whiteboard-cleared: [],
             whiteboard-created: [],
