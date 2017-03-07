@@ -20,6 +20,7 @@ var tanura = {
             connected: [],
             connecting: [],
             data-received: [],
+            fallbackmedia-opened: [],
             initialized: [],
             localstream-created: [],
             localstream-failed: [],
