@@ -18,7 +18,7 @@ window.onload = () => {
 
             // Example of how to handle Tanura's internally generated events.
             tanura.eventHandler.register(
-                    'resize',
+                    'client_resized',
                     () => console.log("Caught a resize."));
         });
 }
