@@ -21,6 +21,7 @@ var tanura = {
             connecting: [],
             data-received: [],
             fallbackmedia-opened: [],
+            fallbackmedia-failed: [],
             initialized: [],
             localstream-created: [],
             localstream-failed: [],
