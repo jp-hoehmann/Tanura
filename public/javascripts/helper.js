@@ -8,8 +8,6 @@
 
 /*
  * Log something.
- *
- * For now, this is just aliased to console.log.
  */
-tanura.log = console.log;
+tanura.log = (_) => console.log("[Tanura] " + _);
 
