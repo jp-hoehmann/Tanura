@@ -14,6 +14,6 @@
     /*
      * Log something.
      */
-    _.log = (_) => console.log("[Tanura] " + _);
+    _.log = ((_) => (x) => console.log("[" + _ + "] " + x))(_.info.name);
 
 })();
