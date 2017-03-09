@@ -13,8 +13,7 @@
  * hosting website.
  */
 var tanura = {
-    url: /.*\//.exec(document.currentScript.src)[0],
-    options: null,
+    erizo: null,
     eventHandler: {
         events: {
             client_initialized: [],
@@ -41,7 +40,8 @@ var tanura = {
         }
     },
     nuve: null,
-    erizo: null,
+    options: null,
+    url: /.*\//.exec(document.currentScript.src)[0],
     whiteboard: null
 };
 
