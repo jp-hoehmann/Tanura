@@ -7,10 +7,13 @@
  * that is not specific to this project.
  */
 
-var _ = tanura;
+(() => {
 
-/*
- * Log something.
- */
-_.log = (_) => console.log("[Tanura] " + _);
+    var _ = tanura;
 
+    /*
+     * Log something.
+     */
+    _.log = (_) => console.log("[Tanura] " + _);
+
+})();
