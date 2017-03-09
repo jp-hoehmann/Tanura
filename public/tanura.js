@@ -39,7 +39,10 @@ var tanura = {
             whiteboard_updated: []
         }
     },
-    info: { name: "Tanura" },
+    info: {
+        name: "Tanura",
+        version: "0.1.0"
+    },
     nuve: null,
     options: null,
     url: /.*\//.exec(document.currentScript.src)[0],
