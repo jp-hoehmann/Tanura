@@ -36,6 +36,4 @@
         obj.addEventListener(type, f);
     }
 
-    _.throttle('resize', 'throttledResize');
-
 })();

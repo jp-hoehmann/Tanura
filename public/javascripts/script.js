@@ -106,6 +106,7 @@ tanura.run = function() {
             fakeResize = false;
         }
     }
+    tanura.throttle('resize', 'throttledResize');
     window.addEventListener('throttledResize', f);
     f();
 
