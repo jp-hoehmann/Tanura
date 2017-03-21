@@ -168,8 +168,8 @@ tanura.run = function() {
                                             + 'snapshot.');
                                     break;
                                 default:
-                                    tanura.log(
-                                            'Ignoring packet of unknown type.');
+                                    tanura.eventHandler.fire(
+                                            'data_received', _.msg.data);
                             }
                         });
                     }
