@@ -51,6 +51,8 @@ var tanura = {
 
 /**
  * Initialize Tanura.
+ *
+ * This will initialize Tanura with a given configuration.
  */
 tanura.init = (_, f) => {
     tanura.options = _ || {};
