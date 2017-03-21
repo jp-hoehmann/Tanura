@@ -30,10 +30,11 @@ tanura.eventHandler.safe = function(_, f) {
  * Fire an event.
  *
  * When given an event name, this function will run all callbacks for that 
- * event. Exit is true on success, false otherwise.
+ * event. A single parameter for the callback may be passed. Exit is true on 
+ * success, false otherwise.
  */
-tanura.eventHandler.fire = (_) =>
-    tanura.eventHandler.safe(_, (_) => _.forEach((i) => i()));
+tanura.eventHandler.fire = (_, x) =>
+    tanura.eventHandler.safe(_, (_) => _.forEach((i) => i(x)));
 
 /*
  * Register a callback for an event.
