@@ -52,7 +52,8 @@ var tanura = {
 /**
  * Initialize Tanura.
  *
- * This will initialize Tanura with a given configuration.
+ * This will initialize Tanura, accepting a callback and an optional 
+ * configuration.
  */
 tanura.init = (f, _) => {
     tanura.options = _ || {};
@@ -93,5 +94,5 @@ tanura.init = (f, _) => {
     request.open(
         'GET', tanura.url + 'tanura.html.frag?base=' + tanura.url);
     request.send();
-})()
+})();
 
