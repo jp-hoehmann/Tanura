@@ -52,12 +52,13 @@ var tanura = {
 /**
  * Initialize Tanura.
  *
- * This will initialize Tanura, accepting a callback and an optional 
- * configuration.
+ * This will initialize Tanura, optionally accepting callback and configuration.
  */
-tanura.init = (f, o) => {
+tanura.init = (f, o, x) => {
     tanura.options = o || {};
-    if (f) { tanura.eventHandler.events.client_initialized.push(f); }
+    if (f) {
+        tanura.eventHandler.events.client_initialized.push(f.bind(x || tanura));
+    }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
