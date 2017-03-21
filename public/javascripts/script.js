@@ -95,7 +95,7 @@ tanura.run = function() {
             // Wait for transitions.
             setTimeout(() => {
                 // Fire the resize-event.
-                tanura.eventHandler.fire('client_resized');
+                tanura.eventHandler.fire('client_resized', document);
 
                 // Pass another resize for Literallycanvas.
                 fakeResize = true;
@@ -191,7 +191,7 @@ tanura.run = function() {
                         subscribeToStreams(_.streams);
 
                         // Init done, run callback.
-                        tanura.eventHandler.fire('client_initialized');
+                        tanura.eventHandler.fire('client_initialized', document);
                     });
 
                 // This will run whenever the client was successfully subscribed 
