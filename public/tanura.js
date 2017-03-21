@@ -55,8 +55,8 @@ var tanura = {
  * This will initialize Tanura, accepting a callback and an optional 
  * configuration.
  */
-tanura.init = (f, _) => {
-    tanura.options = _ || {};
+tanura.init = (f, o) => {
+    tanura.options = o || {};
     if (f) { tanura.eventHandler.events.client_initialized.push(f); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 

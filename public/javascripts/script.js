@@ -33,7 +33,6 @@ tanura.whiteboard = {
  * Tanura init routine.
  */
 tanura.run = function() {
-    var _ = tanura.options;
 
     /**
      * Fake resize indicator.  Because of CSS bugs and limitations, Tanura will 
@@ -50,8 +49,8 @@ tanura.run = function() {
      * Options that should be used to stream.
      */
     var streamOpts = {
-        audio: !! _.audio,
-        video: !! _.video,
+        audio: !! tanura.options.audio,
+        video: !! tanura.options.video,
         data: true,
         screen: false,
     };
@@ -73,10 +72,10 @@ tanura.run = function() {
     /**
      * This will initialize the whiteboard on the canvas from a given snapshot.
      */
-    var mkCanvas = (snapshot) => {
+    var mkCanvas = (_) => {
         tanura.whiteboard.canvas = LC.init(
                 document.getElementById('whiteboard'), 
-                {snapshot: snapshot});
+                {snapshot: _});
         tanura.whiteboard.canvas.setTool(
             new LC.tools.Pencil(tanura.whiteboard.canvas));
         tanura.whiteboard.canvas.on(
@@ -126,33 +125,29 @@ tanura.run = function() {
             tanura.nuve.room = Erizo.Room({token: token});
             var join = function() {
                 // Add a single stream to the DOM.
-                var addStream = function(stream, options) {
-                    if (stream.hasVideo()) {
-                        var videoEntry = document.createElement('div');
-                        videoEntry
-                            .setAttribute('id', 'videoEntry_' + stream.getID());
-                        document
-                            .getElementById('people')
-                            .appendChild(videoEntry);
-                        stream.show('videoEntry_' + stream.getID(), options);
+                var addStream = function(_, o) {
+                    if (_.hasVideo()) {
+                        var e = document.createElement('div');
+                        e.setAttribute('id', 'videoEntry_' + _.getID());
+                        document.getElementById('people').appendChild(e);
+                        _.show('videoEntry_' + _.getID(), o);
                     }
                 };
 
                 // Subscribe to a list of streams.
-                var subscribeToStreams = function(streams) {
-                    for (var i in streams) {
-                        tanura.nuve.room.subscribe(streams[i]);
-                        streams[i]
-                            .addEventListener(
+                var subscribeToStreams = function(l) {
+                    for (var i in l) {
+                        tanura.nuve.room.subscribe(l[i]);
+                        l[i].addEventListener(
                                     'bandwidth-alert',
-                                    function(e) {
+                                    function(_) {
                                         tanura.log(
                                                 'Bandwidth Alert',
-                                                e.msg,
-                                                e.bandwidth);
+                                                _.msg,
+                                                _.bandwidth);
                                     });
-                        streams[i].addEventListener('stream-data', (e) => {
-                            switch(e.msg.type) {
+                        l[i].addEventListener('stream-data', (_) => {
+                            switch(_.msg.type) {
                                 case 'canvas-clear':
                                     tanura.whiteboard.canvas.clear();
                                     tanura.log('Cleared the whiteboard.');
@@ -161,12 +156,12 @@ tanura.run = function() {
                                     tanura
                                         .whiteboard
                                         .canvas
-                                        .loadSnapshot(e.msg.data);
+                                        .loadSnapshot(_.msg.data);
                                     tanura.log('Loaded a whiteboard change.');
                                     break;
                                 case 'canvas-init':
                                     if (!tanura.whiteboard.canvas) { 
-                                        mkCanvas(e.msg.data); 
+                                        mkCanvas(_.msg.data); 
                                     }
                                     tanura.log(
                                             'Created canvas from existing '
@@ -182,10 +177,10 @@ tanura.run = function() {
 
                 // This will run as soon as signalling is fully initialized.
                 tanura.nuve.room.addEventListener(
-                    'room-connected', function(roomEvent) {
+                    'room-connected', function(_) {
                         // If we are the only one in the room, add a fresh 
                         // whiteboard.
-                        if (roomEvent.streams.length == 0) {
+                        if (_.streams.length == 0) {
                             mkCanvas(); 
                             tanura.log('Created new canvas.');
                         }
@@ -193,7 +188,7 @@ tanura.run = function() {
                         // Publish the local stream.
                         tanura.nuve.room.publish(
                             tanura.erizo.localStream, {maxVideoBW: 300});
-                        subscribeToStreams(roomEvent.streams);
+                        subscribeToStreams(_.streams);
 
                         // Init done, run callback.
                         tanura.eventHandler.fire('client_initialized');
@@ -207,14 +202,13 @@ tanura.run = function() {
 
                 // This will run whenever a new stream was added to the room.
                 tanura.nuve.room.addEventListener(
-                    'stream-added', function(streamEvent) {
+                    'stream-added', function(_) {
                         // Attach to the new stream.
-                        subscribeToStreams([streamEvent.stream]);
+                        subscribeToStreams([_.stream]);
 
                         // If the new stream isn't our own stream.
                         if (
-                            tanura.erizo.localStream.getID()
-                            != streamEvent.stream.getID()
+                            tanura.erizo.localStream.getID() != _.stream.getID()
                         ) {
                             // Send the newcomer the current state of the 
                             // whiteboard.  This is wasteful as the new client 
@@ -231,16 +225,14 @@ tanura.run = function() {
 
                 // This will run whenever a stream disappeared from the room.
                 tanura.nuve.room.addEventListener(
-                    'stream-removed', function(streamEvent) {
+                    'stream-removed', function(_) {
                         document
-                            .getElementById(
-                                    'videoEntry_' + streamEvent.stream.getID())
+                            .getElementById('videoEntry_' + _.stream.getID())
                             .remove();
                     });
 
                 // This will run if opening the stream has failed.
-                tanura.nuve.room.addEventListener(
-                    'stream-failed', function(streamEvent) {
+                tanura.nuve.room.addEventListener('stream-failed', function(_) {
                         // FIXME This needs error handling.
                         tanura.log('Stream Failed... uh-oh');
                     });
@@ -258,25 +250,23 @@ tanura.run = function() {
             tanura
                 .erizo
                 .localStream
-                .addEventListener('access-accepted', function(event) {
-                    join();
-                });
+                .addEventListener('access-accepted', function(_) { join(); });
             tanura
                 .erizo
                 .localStream
-                .addEventListener('access-denied', function(event) {
+                .addEventListener('access-denied', function(_) {
                     tanura.erizo.localStream.close();
                     tanura.erizo.localStream = Erizo.Stream(fallbackStreamOpts);
                     tanura
                         .erizo
                         .localStream
-                        .addEventListener('access-accepted', function(event) {
+                        .addEventListener('access-accepted', function(_) {
                             join();
                         });
                     tanura
                         .erizo
                         .localStream
-                        .addEventListener('access-denied', function(event) {
+                        .addEventListener('access-denied', function(_) {
                             tanura.log('Stream creation failed.');
                         });
                     tanura.erizo.localStream.init();

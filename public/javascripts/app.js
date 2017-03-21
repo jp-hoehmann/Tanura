@@ -12,8 +12,8 @@
  * When given an event name, this function will check, if there is an entry in 
  * tanura.eventHandler.events for that name, that has the methods required.
  */
-tanura.eventHandler.check = function(x) {
-    return !! this[x] && Array.isArray(this[x]);
+tanura.eventHandler.check = function(_) {
+    return !! this[_] && Array.isArray(this[_]);
 }.bind(tanura.eventHandler.events)
 
 /*
@@ -22,8 +22,8 @@ tanura.eventHandler.check = function(x) {
  * This will check if a given event exists and call a given function on it, if 
  * it does. The return value indicates if the event was found.
  */
-tanura.eventHandler.safe = function(x, f) {
-    return this.check(x) && ! f(this.events[x]) || true;
+tanura.eventHandler.safe = function(_, f) {
+    return this.check(_) && ! f(this.events[_]) || true;
 }.bind(tanura.eventHandler)
 
 /*
@@ -32,8 +32,8 @@ tanura.eventHandler.safe = function(x, f) {
  * When given an event name, this function will run all callbacks for that 
  * event. Exit is true on success, false otherwise.
  */
-tanura.eventHandler.fire = (x) =>
-    tanura.eventHandler.safe(x, (_) => _.forEach((i) => i()));
+tanura.eventHandler.fire = (_) =>
+    tanura.eventHandler.safe(_, (_) => _.forEach((i) => i()));
 
 /*
  * Register a callback for an event.
@@ -41,6 +41,6 @@ tanura.eventHandler.fire = (x) =>
  * This will add a function to be called whenever a given event occurs. Exit is 
  * true on success, false otherwise.
  */
-tanura.eventHandler.register = (x, f) =>
-    tanura.eventHandler.safe(x, (_) => _.push(f));
+tanura.eventHandler.register = (_, f) =>
+    tanura.eventHandler.safe(_, (_) => _.push(f));
 

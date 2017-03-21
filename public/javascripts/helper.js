@@ -7,14 +7,12 @@
  * that is not specific to this project.
  */
 
-(() => {
-
-    var _ = tanura;
+((_) => {
 
     /*
      * Log something.
      */
-    _.log = ((_) => (x) => console.log("[" + _ + "] " + x))(_.info.name);
+    _.log = ((_) => (a) => console.log("[" + _ + "] " + a))(_.info.name);
 
     /*
      * Throttle an event.
@@ -36,4 +34,4 @@
         obj.addEventListener(type, f);
     }
 
-})();
+})(tanura);
