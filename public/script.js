@@ -12,7 +12,6 @@
 window.onload = () => {
     console.log("Initializing Tanura...");
     tanura.init(
-        {video: true},
         () => {
             console.log("Initialized.");
 
@@ -20,6 +19,7 @@ window.onload = () => {
             tanura.eventHandler.register(
                     'client_resized',
                     () => console.log("Caught a resize."));
-        });
+        },
+        {video: true});
 }
 

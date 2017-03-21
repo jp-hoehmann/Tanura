@@ -54,7 +54,7 @@ var tanura = {
  *
  * This will initialize Tanura with a given configuration.
  */
-tanura.init = (_, f) => {
+tanura.init = (f, _) => {
     tanura.options = _ || {};
     if (f) { tanura.eventHandler.events.client_initialized.push(f); }
 
