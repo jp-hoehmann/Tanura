@@ -28,7 +28,6 @@ var tanura = {
             media_denied: [],
             media_granted: [],
             room_connected: [],
-            room_connecting: [],
             stream_added: [],
             stream_opened: [],
             stream_removed: [],
