@@ -22,6 +22,7 @@ var tanura = {
             fallbackmedia_failed: [],
             fallbackmedia_opened: [],
             localstream_failed: [],
+            localstream_connected: [],
             localstream_created: [],
             media_opened: [],
             media_failed: [],
