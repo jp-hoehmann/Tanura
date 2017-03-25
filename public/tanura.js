@@ -23,6 +23,7 @@ var tanura = {
             fallbackmedia_granted: [],
             localstream_connected: [],
             localstream_denied: [],
+            localstream_failed: [],
             localstream_granted: [],
             media_denied: [],
             media_granted: [],
