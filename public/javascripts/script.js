@@ -263,6 +263,7 @@ tanura.run = function() {
                 .erizo
                 .localStream
                 .addEventListener('access-denied', function(_) {
+                    tanura.eventHandler.fire('media_denied', streamOpts);
                     tanura.erizo.localStream.close();
                     tanura.erizo.localStream = Erizo.Stream(fallbackStreamOpts);
                     tanura
