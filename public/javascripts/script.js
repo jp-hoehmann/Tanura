@@ -262,7 +262,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-accepted', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_opened', fallbackStreamOpts);
+                                    'fallbackmedia_granted', fallbackStreamOpts);
                             join();
                         });
                     tanura
@@ -270,7 +270,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-denied', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_failed', fallbackStreamOpts);
+                                    'fallbackmedia_denied', fallbackStreamOpts);
                         });
                     tanura.erizo.localStream.init();
                 });
