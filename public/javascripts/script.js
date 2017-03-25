@@ -255,7 +255,10 @@ tanura.run = function() {
             tanura
                 .erizo
                 .localStream
-                .addEventListener('access-accepted', function(_) { join(); });
+                .addEventListener('access-accepted', function(_) {
+                    tanura.eventHandler.fire('media_granted', streamOpts);
+                    join();
+                });
             tanura
                 .erizo
                 .localStream
