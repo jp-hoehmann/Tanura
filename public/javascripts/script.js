@@ -269,7 +269,8 @@ tanura.run = function() {
                         .erizo
                         .localStream
                         .addEventListener('access-denied', function(_) {
-                            tanura.log('Stream creation failed.');
+                            tanura.eventHandler.fire(
+                                    'fallbackmedia_failed', fallbackStreamOpts);
                         });
                     tanura.erizo.localStream.init();
                 });
