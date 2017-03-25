@@ -211,7 +211,8 @@ tanura.run = function() {
                             tanura.erizo.localStream.getID() == _.stream.getID()
                         ) {
                             tanura.eventHandler.fire(
-                                    'localstream_connected', _.stream);
+                                    'localstream_connected',
+                                    tanura.erizo.localStream);
                         } else {
                             // Send the newcomer the current state of the 
                             // whiteboard.  This is wasteful as the new client 
@@ -236,8 +237,9 @@ tanura.run = function() {
 
                 // This will run if opening the stream has failed.
                 tanura.nuve.room.addEventListener('stream-failed', function(_) {
-                        // FIXME This needs error handling.
-                        tanura.log('Stream Failed... uh-oh');
+                        tanura.eventHandler.fire(
+                                'localstream_failed',
+                                tanura.erizo.localStream);
                     });
 
                 // All set. Connect to the room.
