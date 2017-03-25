@@ -179,7 +179,7 @@ tanura.run = function() {
                 tanura.nuve.room.addEventListener(
                     'room-connected', function(_) {
                         tanura.eventHandler.fire(
-                                'connection_established', tanura.nuve.room);
+                                'connection_opened', tanura.nuve.room);
 
                         // If we are the only one in the room, add a fresh 
                         // whiteboard.
