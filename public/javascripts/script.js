@@ -178,6 +178,9 @@ tanura.run = function() {
                 // This will run as soon as signalling is fully initialized.
                 tanura.nuve.room.addEventListener(
                     'room-connected', function(_) {
+                        tanura.eventHandler.fire(
+                                'connection_established', tanura.nuve.room);
+
                         // If we are the only one in the room, add a fresh 
                         // whiteboard.
                         if (_.streams.length == 0) {
