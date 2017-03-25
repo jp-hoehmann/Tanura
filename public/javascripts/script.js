@@ -33,7 +33,6 @@ tanura.whiteboard = {
  * Tanura init routine.
  */
 tanura.run = function() {
-
     /**
      * Fake resize indicator.  Because of CSS bugs and limitations, Tanura will 
      * sometimes have to change layout parameters manually in Js. As this 
@@ -111,6 +110,8 @@ tanura.run = function() {
 
     // Connect to Tanura.
     var connect = () => {
+        tanura.eventHandler.fire('client_loaded', document);
+
         // Wait for Erizo to load.
         if (typeof Erizo === 'undefined' || Erizo == null) {
             setTimeout(connect, 100);
