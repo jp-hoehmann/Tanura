@@ -244,6 +244,13 @@ tanura.run = function() {
                                 'connection_failed', tanura.nuve.room);
                     });
 
+                // This will run when the room is disconnected.
+                tanura.nuve.room.addEventListener(
+                        'room-disconnected', function(_) {
+                            tanura.eventHandler.fire(
+                                    'connection_closed', tanura.nuve.room);
+                        });
+
                 // All set. Connect to the room.
                 tanura.nuve.room.connect();
 
