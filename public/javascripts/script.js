@@ -261,6 +261,8 @@ tanura.run = function() {
                         .erizo
                         .localStream
                         .addEventListener('access-accepted', function(_) {
+                            tanura.eventHandler.fire(
+                                    'fallbackmedia_opened', fallbackStreamOpts);
                             join();
                         });
                     tanura
