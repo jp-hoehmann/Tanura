@@ -263,14 +263,14 @@ tanura.run = function() {
                 .erizo
                 .localStream
                 .addEventListener('access-accepted', function(_) {
-                    tanura.eventHandler.fire('media_granted', streamOpts);
+                    tanura.eventHandler.fire('media_granted_preferred', streamOpts);
                     join();
                 });
             tanura
                 .erizo
                 .localStream
                 .addEventListener('access-denied', function(_) {
-                    tanura.eventHandler.fire('media_denied', streamOpts);
+                    tanura.eventHandler.fire('media_denied_preferred', streamOpts);
                     tanura.erizo.localStream.close();
                     tanura.erizo.localStream = Erizo.Stream(fallbackStreamOpts);
                     tanura
@@ -278,7 +278,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-accepted', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_granted', fallbackStreamOpts);
+                                    'media_granted_fallback', fallbackStreamOpts);
                             join();
                         });
                     tanura
@@ -286,7 +286,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-denied', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_denied', fallbackStreamOpts);
+                                    'media_denied_fallback', fallbackStreamOpts);
                         });
                     tanura.erizo.localStream.init();
                 });
