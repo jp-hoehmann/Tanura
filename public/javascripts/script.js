@@ -206,10 +206,13 @@ tanura.run = function() {
                         // Attach to the new stream.
                         subscribeToStreams([_.stream]);
 
-                        // If the new stream isn't our own stream.
+                        // If the new stream is our own stream.
                         if (
-                            tanura.erizo.localStream.getID() != _.stream.getID()
+                            tanura.erizo.localStream.getID() == _.stream.getID()
                         ) {
+                            tanura.eventHandler.fire(
+                                    'localstream_connected', _.stream);
+                        } else {
                             // Send the newcomer the current state of the 
                             // whiteboard.  This is wasteful as the new client 
                             // will get the state by each other client, but 
