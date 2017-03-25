@@ -238,7 +238,7 @@ tanura.run = function() {
                             .remove();
                     });
 
-                // This will run if opening the stream has failed.
+                // This will run if connecting to the room has failed.
                 tanura.nuve.room.addEventListener('room-error', function(_) {
                         tanura.eventHandler.fire(
                                 'connection_failed', tanura.nuve.room);
