@@ -18,6 +18,7 @@ var tanura = {
         events: {
             client_initialized: [],
             client_resized: [],
+            connection_closed: [],
             connection_established: [],
             connection_failed: [],
             data_received: [],
