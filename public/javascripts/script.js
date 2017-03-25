@@ -214,7 +214,7 @@ tanura.run = function() {
                             tanura.erizo.localStream.getID() == _.stream.getID()
                         ) {
                             tanura.eventHandler.fire(
-                                    'localstream_connected',
+                                    'stream_added_local',
                                     tanura.erizo.localStream);
                         } else {
                             // Send the newcomer the current state of the 
