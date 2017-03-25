@@ -36,6 +36,7 @@ var tanura = {
             stream_removed: [],
             stream_removed_local: [],
             stream_throttled: [],
+            stream_throttled_local: [],
             whiteboard_changed: [],
             whiteboard_cleared: [],
             whiteboard_created: [],
