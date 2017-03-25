@@ -17,6 +17,7 @@ var tanura = {
     eventHandler: {
         events: {
             client_initialized: [],
+            client_loaded: [],
             client_resized: [],
             connection_closed: [],
             connection_failed: [],
