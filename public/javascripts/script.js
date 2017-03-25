@@ -238,8 +238,7 @@ tanura.run = function() {
                 // This will run if opening the stream has failed.
                 tanura.nuve.room.addEventListener('stream-failed', function(_) {
                         tanura.eventHandler.fire(
-                                'localstream_failed',
-                                tanura.erizo.localStream);
+                                'connection_failed', tanura.nuve.room);
                     });
 
                 // All set. Connect to the room.
@@ -271,7 +270,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-accepted', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_granted', fallbackStreamOpts);
+                                    'fallbackmedia_opened', fallbackStreamOpts);
                             join();
                         });
                     tanura
@@ -279,7 +278,7 @@ tanura.run = function() {
                         .localStream
                         .addEventListener('access-denied', function(_) {
                             tanura.eventHandler.fire(
-                                    'fallbackmedia_denied', fallbackStreamOpts);
+                                    'fallbackmedia_failed', fallbackStreamOpts);
                         });
                     tanura.erizo.localStream.init();
                 });
