@@ -152,7 +152,14 @@ tanura.run = function() {
                             switch(_.msg.type) {
                                 case 'canvas-clear':
                                     tanura.whiteboard.canvas.clear();
-                                    tanura.log('Cleared the whiteboard.');
+                                    tanura
+                                        .eventHandler
+                                        .fire(
+                                                'whiteboard_cleared',
+                                                tanura
+                                                    .whiteboard
+                                                    .canvas
+                                                    .getSnapshot());
                                     break;
                                 case 'canvas-draw':
                                     tanura
