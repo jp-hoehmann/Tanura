@@ -200,7 +200,11 @@ tanura.run = function() {
                         // whiteboard.
                         if (_.streams.length == 0) {
                             mkCanvas(); 
-                            tanura.log('Created new canvas.');
+                            tanura
+                                .eventHandler
+                                .fire(
+                                        'whiteboard_created',
+                                        tanura.whiteboard.canvas.getSnapshot());
                         }
 
                         // Publish the local stream.
