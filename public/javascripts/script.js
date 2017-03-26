@@ -159,7 +159,9 @@ tanura.run = function() {
                                         .whiteboard
                                         .canvas
                                         .loadSnapshot(_.msg.data);
-                                    tanura.log('Loaded a whiteboard change.');
+                                    tanura
+                                        .eventHandler
+                                        .fire('whiteboard_changed', _.msg.data);
                                     break;
                                 case 'canvas-init':
                                     if (!tanura.whiteboard.canvas) { 
