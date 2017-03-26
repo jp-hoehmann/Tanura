@@ -229,6 +229,11 @@ tanura.run = function() {
                         }
                     });
 
+                // This will run whenever a stream fails.
+                tanura.nuve.room.addEventListener('stream-failed', function(_) {
+                    tanura.eventHandler.fire('stream_failed', _.stream);
+                });
+
                 // This will run whenever a stream disappeared from the room.
                 tanura.nuve.room.addEventListener(
                     'stream-removed', function(_) {
