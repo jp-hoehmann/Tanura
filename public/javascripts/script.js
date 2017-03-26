@@ -173,10 +173,12 @@ tanura.run = function() {
                                 case 'canvas-init':
                                     if (!tanura.whiteboard.canvas) { 
                                         mkCanvas(_.msg.data); 
+                                        tanura
+                                            .eventHandler
+                                            .fire(
+                                                    'whiteboard_loaded',
+                                                    _.msg.data);
                                     }
-                                    tanura.log(
-                                            'Created canvas from existing '
-                                            + 'snapshot.');
                                     break;
                                 default:
                                     tanura
