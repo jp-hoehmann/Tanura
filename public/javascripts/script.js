@@ -243,6 +243,14 @@ tanura.run = function() {
                             .remove();
                     });
 
+                // This will run whenever a streamer cannot keep up the 
+                // bandwidth the room requires.
+                tanura.nuve.room.addEventListener(
+                        'bandwidth-alert', function(_) {
+                            tanura.eventHandler.fire(
+                                    'stream_throttled', _.stream);
+                        });
+
                 // This will run if connecting to the room has failed.
                 tanura.nuve.room.addEventListener('room-error', function(_) {
                         tanura.eventHandler.fire(
