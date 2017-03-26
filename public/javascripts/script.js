@@ -72,16 +72,17 @@ tanura.run = function() {
      * This will initialize the whiteboard on the canvas from a given snapshot.
      */
     var mkCanvas = (_) => {
-        tanura.whiteboard.canvas = LC.init(
-                document.getElementById('whiteboard'), 
-                {snapshot: _});
-        tanura.whiteboard.canvas.setTool(
-            new LC.tools.Pencil(tanura.whiteboard.canvas));
-        tanura.whiteboard.canvas.on(
-            'drawEnd', () => tanura.erizo.localStream.sendData({
-                type: 'canvas-draw',
-                data: tanura.whiteboard.canvas.getSnapshot()
-            }));
+        tanura.whiteboard.canvas = 
+            LC.init(document.getElementById('whiteboard'), {snapshot: _});
+        tanura
+            .whiteboard
+            .canvas
+            .setTool(new LC.tools.Pencil(tanura.whiteboard.canvas));
+        tanura.whiteboard.canvas.on('drawEnd', () => 
+                tanura.erizo.localStream.sendData({
+                    type: 'canvas-draw',
+                    data: tanura.whiteboard.canvas.getSnapshot()
+                }));
     }
 
     var body = document.getElementsByTagName('body')[0];
@@ -169,18 +170,22 @@ tanura.run = function() {
                                             + 'snapshot.');
                                     break;
                                 default:
-                                    tanura.eventHandler.fire(
-                                            'data_received', _.msg.data);
+                                    tanura
+                                        .eventHandler
+                                        .fire('data_received', _.msg.data);
                             }
                         });
                     }
                 };
 
                 // This will run as soon as signalling is fully initialized.
-                tanura.nuve.room.addEventListener(
-                    'room-connected', function(_) {
-                        tanura.eventHandler.fire(
-                                'connection_opened', tanura.nuve.room);
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('room-connected', function(_) {
+                        tanura
+                            .eventHandler
+                            .fire('connection_opened', tanura.nuve.room);
 
                         // If we are the only one in the room, add a fresh 
                         // whiteboard.
@@ -190,8 +195,12 @@ tanura.run = function() {
                         }
 
                         // Publish the local stream.
-                        tanura.nuve.room.publish(
-                            tanura.erizo.localStream, {maxVideoBW: 300});
+                        tanura
+                            .nuve
+                            .room
+                            .publish(
+                                    tanura.erizo.localStream, 
+                                    {maxVideoBW: 300});
                         subscribeToStreams(_.streams);
 
                         // Init done, run callback.
@@ -200,13 +209,18 @@ tanura.run = function() {
 
                 // This will run whenever the client was successfully subscribed 
                 // to a new stream.
-                tanura.nuve.room.addEventListener(
-                        'stream-subscribed', 
-                        function(_) { addStream(_.stream); });
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('stream-subscribed', function(_) {
+                        addStream(_.stream);
+                    });
 
                 // This will run whenever a new stream was added to the room.
-                tanura.nuve.room.addEventListener(
-                    'stream-added', function(_) {
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('stream-added', function(_) {
                         // Attach to the new stream.
                         subscribeToStreams([_.stream]);
 
@@ -235,8 +249,10 @@ tanura.run = function() {
                 });
 
                 // This will run whenever a stream disappeared from the room.
-                tanura.nuve.room.addEventListener(
-                    'stream-removed', function(_) {
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('stream-removed', function(_) {
                         tanura.eventHandler.fire('stream_removed', _.stream);
                         document
                             .getElementById('videoEntry_' + _.stream.getID())
@@ -245,24 +261,29 @@ tanura.run = function() {
 
                 // This will run whenever a streamer cannot keep up the 
                 // bandwidth the room requires.
-                tanura.nuve.room.addEventListener(
-                        'bandwidth-alert', function(_) {
-                            tanura.eventHandler.fire(
-                                    'stream_throttled', _.stream);
-                        });
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('bandwidth-alert', function(_) {
+                        tanura.eventHandler.fire('stream_throttled', _.stream);
+                    });
 
                 // This will run if connecting to the room has failed.
                 tanura.nuve.room.addEventListener('room-error', function(_) {
-                        tanura.eventHandler.fire(
-                                'connection_failed', tanura.nuve.room);
+                        tanura
+                            .eventHandler
+                            .fire('connection_failed', tanura.nuve.room);
                     });
 
                 // This will run when the room is disconnected.
-                tanura.nuve.room.addEventListener(
-                        'room-disconnected', function(_) {
-                            tanura.eventHandler.fire(
-                                    'connection_closed', tanura.nuve.room);
-                        });
+                tanura
+                    .nuve
+                    .room
+                    .addEventListener('room-disconnected', function(_) {
+                        tanura
+                            .eventHandler
+                            .fire('connection_closed', tanura.nuve.room);
+                    });
 
                 // All set. Connect to the room.
                 tanura.nuve.room.connect();
@@ -292,16 +313,22 @@ tanura.run = function() {
                         .erizo
                         .localStream
                         .addEventListener('access-accepted', function(_) {
-                            tanura.eventHandler.fire(
-                                    'media_granted_fallback', fallbackStreamOpts);
+                            tanura
+                                .eventHandler
+                                .fire(
+                                        'media_granted_fallback',
+                                        fallbackStreamOpts);
                             join();
                         });
                     tanura
                         .erizo
                         .localStream
                         .addEventListener('access-denied', function(_) {
-                            tanura.eventHandler.fire(
-                                    'media_denied_fallback', fallbackStreamOpts);
+                            tanura
+                                .eventHandler
+                                .fire(
+                                        'media_denied_fallback',
+                                        fallbackStreamOpts);
                         });
                     tanura.erizo.localStream.init();
                 });
