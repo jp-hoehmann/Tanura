@@ -237,6 +237,7 @@ tanura.run = function() {
                 // This will run whenever a stream disappeared from the room.
                 tanura.nuve.room.addEventListener(
                     'stream-removed', function(_) {
+                        tanura.eventHandler.fire('stream_removed', _.stream);
                         document
                             .getElementById('videoEntry_' + _.stream.getID())
                             .remove();
