@@ -45,6 +45,7 @@ var tanura = {
             whiteboard_cleared: [],
             whiteboard_created: [],
             whiteboard_edited: [],
+            whiteboard_initialized: [],
             whiteboard_loaded: [],
             whiteboard_updated: []
         }
