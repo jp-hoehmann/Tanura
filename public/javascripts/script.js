@@ -156,41 +156,46 @@ tanura.run = function() {
                                                 _.bandwidth);
                                     });
                         l[i].addEventListener('stream-data', (_) => {
-                            switch(_.msg.type) {
-                                case 'canvas-clear':
-                                    tanura.whiteboard.canvas.clear();
-                                    tanura
-                                        .eventHandler
-                                        .fire(
-                                                'whiteboard_cleared',
-                                                tanura
-                                                    .whiteboard
-                                                    .canvas
-                                                    .getSnapshot());
-                                    break;
-                                case 'canvas-draw':
-                                    tanura
-                                        .whiteboard
-                                        .canvas
-                                        .loadSnapshot(_.msg.data);
-                                    tanura
-                                        .eventHandler
-                                        .fire('whiteboard_changed', _.msg.data);
-                                    break;
-                                case 'canvas-init':
-                                    if (!tanura.whiteboard.canvas) { 
-                                        mkCanvas(_.msg.data); 
+                            if (_.stream.getID()
+                                    != tanura.erizo.localStream.getID()) {
+                                switch(_.msg.type) {
+                                    case 'canvas-clear':
+                                        tanura.whiteboard.canvas.clear();
                                         tanura
                                             .eventHandler
                                             .fire(
-                                                    'whiteboard_loaded',
+                                                    'whiteboard_cleared',
+                                                    tanura
+                                                        .whiteboard
+                                                        .canvas
+                                                        .getSnapshot());
+                                        break;
+                                    case 'canvas-draw':
+                                        tanura
+                                            .whiteboard
+                                            .canvas
+                                            .loadSnapshot(_.msg.data);
+                                        tanura
+                                            .eventHandler
+                                            .fire(
+                                                    'whiteboard_changed',
                                                     _.msg.data);
-                                    }
-                                    break;
-                                default:
-                                    tanura
-                                        .eventHandler
-                                        .fire('data_received', _.msg.data);
+                                        break;
+                                    case 'canvas-init':
+                                        if (!tanura.whiteboard.canvas) {
+                                            mkCanvas(_.msg.data); 
+                                            tanura
+                                                .eventHandler
+                                                .fire(
+                                                        'whiteboard_loaded',
+                                                        _.msg.data);
+                                        }
+                                        break;
+                                    default:
+                                        tanura
+                                            .eventHandler
+                                            .fire('data_received', _.msg.data);
+                                }
                             }
                         });
                     }
