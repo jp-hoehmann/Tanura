@@ -116,9 +116,7 @@ tanura.eventHandler.register = (_, f, x) =>
  */
 tanura.init = (f, o, x) => {
     tanura.options = o || {};
-    if (f) {
-        tanura.eventHandler.events.client_initialized.push(f.bind(x || tanura));
-    }
+    if (f) { tanura.eventHandler.register('client_initialized', f, x); }
 
     // Start Tanura, if everything is loaded already. If Tanura is still 
     // loading, it will automatically launch when ready.
