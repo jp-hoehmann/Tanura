@@ -41,6 +41,9 @@
     groupEvents(
             'media_granted',
             ['media_granted_preferred', 'media_granted_fallback']);
+    groupEvents(
+            'whiteboard_updated',
+            ['whiteboard_edited', 'whiteboard_changed']);
 
 })();
 
