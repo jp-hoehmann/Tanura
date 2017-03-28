@@ -33,8 +33,10 @@ tanura.eventHandler.safe = function(_, f) {
  * event. A single parameter for the callback may be passed. Exit is true on 
  * success, false otherwise.
  */
-tanura.eventHandler.fire = (_, x) =>
-    tanura.eventHandler.safe(_, (_) => _.forEach((i) => i(x)));
+tanura.eventHandler.fire = (_, x) => {
+    tanura.log("Event: " + _);
+    return tanura.eventHandler.safe(_, (_) => _.forEach((i) => i(x)));
+}
 
 /*
  * Register a callback for an event.
