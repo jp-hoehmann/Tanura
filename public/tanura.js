@@ -3,7 +3,14 @@
 /*
  * Bootstrap Tanura.
  *
- * This script will bootstrap Tanura into an application.
+ * This script will bootstrap Tanura into an application.  It is added directly 
+ * to the website that wants to make use of Tanura and contains a definition of 
+ * Tanura's public API.
+ *
+ * Only the minimal amount of functionality required to successfully load 
+ * everything else is included here.  This includes event-handling 
+ * functionality, a method for initializing Tanura with a bunch of options and 
+ * the code that will phone home and (hopefully) fetch everything else.
  */
 
 /**
