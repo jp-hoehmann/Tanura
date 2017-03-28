@@ -6,5 +6,9 @@
  * This script defines Tanura's high level features.
  */
 
-// TODO
+(function() {
+
+    // TODO
+
+})();
 

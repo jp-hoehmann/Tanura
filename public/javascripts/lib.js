@@ -7,5 +7,9 @@
  * the end-user.
  */
 
-// TODO
+(function() {
+
+    // TODO
+
+})();
 
