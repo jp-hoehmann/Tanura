@@ -37,6 +37,7 @@
         return r;
     }.bind(tanura.eventHandler);
 
+    aliasEvent('media_denied', 'media_denied_fallback');
     groupEvents(
             'media_granted',
             ['media_granted_preferred', 'media_granted_fallback']);
