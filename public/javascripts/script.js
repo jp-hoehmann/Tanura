@@ -117,13 +117,14 @@ tanura.run = function() {
 
     // Connect to Tanura.
     var connect = () => {
-        tanura.eventHandler.fire('client_loaded', document);
 
         // Wait for Erizo to load.
         if (typeof Erizo === 'undefined' || Erizo == null) {
             setTimeout(connect, 100);
             return;
         }
+
+        tanura.eventHandler.fire('client_loaded', document);
 
         // Prepare a request for a room token.
         var req = new XMLHttpRequest();
