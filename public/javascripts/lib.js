@@ -44,6 +44,9 @@
     groupEvents(
             'whiteboard_updated',
             ['whiteboard_edited', 'whiteboard_changed']);
+    groupEvents(
+            'whiteboard_initialized',
+            ['whiteboard_created', 'whiteboard_loaded']);
 
 })();
 
