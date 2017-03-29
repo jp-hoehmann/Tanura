@@ -9,7 +9,13 @@
 
 (function() {
 
-    // TODO
+    /*
+     * Handling for whiteboard_edited.  This will automagically push whiteboard 
+     * edits to all other participants.
+     */
+    tanura.eventHandler.register('whiteboard_edited', function(_) {
+        return this.erizo.localStream.sendData({type: 'canvas-draw', data: _});
+    });
 
 })()
 

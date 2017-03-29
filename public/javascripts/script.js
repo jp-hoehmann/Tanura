@@ -78,17 +78,12 @@ tanura.run = function() {
             .whiteboard
             .canvas
             .setTool(new LC.tools.Pencil(tanura.whiteboard.canvas));
-        tanura.whiteboard.canvas.on('drawEnd', () => {
-            tanura.erizo.localStream.sendData({
-                type: 'canvas-draw',
-                data: tanura.whiteboard.canvas.getSnapshot()
-            });
+        tanura.whiteboard.canvas.on('drawEnd', () =>
             tanura
                 .eventHandler
                 .fire(
                         'whiteboard_edited',
-                        tanura.whiteboard.canvas.getSnapshot());
-        });
+                        tanura.whiteboard.canvas.getSnapshot()));
     }
 
     var body = document.getElementsByTagName('body')[0];
