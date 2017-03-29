@@ -11,15 +11,16 @@
  */
 window.onload = () => {
     console.log("Initializing Tanura...");
-    tanura.init(
-        () => {
-            console.log("Initialized.");
 
-            // Example of how to handle Tanura's internally generated events.
-            tanura.eventHandler.register(
-                    'client_resized',
-                    () => console.log("Caught a resize."));
-        },
-        {video: true});
+    tanura.eventHandler.register('client_initialized', () => {
+        console.log("Initialized.");
+
+        // Example of how to handle Tanura's internally generated events.
+        tanura.eventHandler.register(
+                'client_resized',
+                () => console.log("Caught a resize."));
+    });
+
+    tanura.init({video: true});
 }
 
