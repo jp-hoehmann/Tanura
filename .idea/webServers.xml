@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="174a6e0d-5609-492f-84b1-7eb227a0acd0" name="box" url="http://box">
+        <fileTransfer host="box" port="22" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/home/jean-pierre/Desktop/Tanura" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
