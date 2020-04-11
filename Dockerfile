@@ -6,7 +6,7 @@
 #
 
 FROM node:4
-MAINTAINER Nuvanda <jp@hhmn.de>
+MAINTAINER Jean-Pierre Höhmann <jp@hhmn.de>
 RUN useradd --user-group --shell /bin/nologin app
 ENV HOME=/srv/www
 RUN mkdir -p ${HOME}/tanura/node_modules /media/docker/licode
