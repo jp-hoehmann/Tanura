@@ -10,8 +10,8 @@ tanura1:
   env_file: .env
   links:
     - licode1:licode
-  ports:
-    - "3002:3002"
+  expose:
+    - "3002"
   volumes:
     - licode1:/media/docker/licode:ro
 licode1:
@@ -19,9 +19,9 @@ licode1:
   env_file: .env
   expose:
     - "3000"
+    - "3001"
+    - "8080"
   ports:
-    - "3001:3001"
-    - "8080:8080"
     - "50000:50000/udp"
     - "50001:50001/udp"
     - "50002:50002/udp"
