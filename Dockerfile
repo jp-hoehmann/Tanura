@@ -5,7 +5,7 @@
 # This file configures the container for Tanura.
 #
 
-FROM node:4
+FROM node:8
 MAINTAINER Jean-Pierre Höhmann <jp@hhmn.de>
 RUN useradd --user-group --shell /bin/nologin app
 ENV HOME=/srv/www
