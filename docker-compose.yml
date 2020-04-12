@@ -8,11 +8,11 @@ tanura0:
   build: .
   env_file: .env
   links:
-    - licode1:licode
+    - licode0:licode
   expose:
     - "3002"
   volumes:
-    - licode1:/media/docker/licode:ro
+    - licode0:/media/docker/licode:ro
 licode0:
   build: licode
   env_file: .env
@@ -522,4 +522,4 @@ licode0:
     - "50498:50498/udp"
     - "50499:50499/udp"
   volumes:
-    - licode1:/srv/docker/licode
+    - licode0:/srv/docker/licode
