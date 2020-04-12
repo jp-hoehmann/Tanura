@@ -13,6 +13,7 @@ tanura0:
     - "3002"
   volumes:
     - licode0:/media/docker/licode:ro
+
 licode0:
   build: licode
   env_file: .env
