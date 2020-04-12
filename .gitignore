@@ -39,10 +39,6 @@ build/Release
 #
 .node_repl_history
 
-# Docker volume directories.
-#
-/licode*/
-
 #####################
 # Unimportant files #
 #####################
@@ -118,4 +114,3 @@ jspm_packages
 # Licode configuration.
 #
 /licode_config.js
-

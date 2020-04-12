@@ -8,5 +8,4 @@
 tanura:
     build: .
 licode:
-    image: nuvanda/licode:latest
-
+    build: licode
