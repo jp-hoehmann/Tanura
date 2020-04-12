@@ -14,7 +14,7 @@ COPY package.json npm-shrinkwrap.json ${HOME}/tanura/
 RUN chown -R app:app ${HOME}/ /media/docker
 USER app
 WORKDIR ${HOME}/tanura
-RUN npm install
+RUN npm install --no-optional
 USER root
 COPY . ${HOME}/tanura
 RUN chown -R app:app ${HOME}/*
