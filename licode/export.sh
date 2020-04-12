@@ -4,6 +4,8 @@
 #
 # Export files for use by Tanura.
 #
+# This script is fire-and-forget, so no proper error handling.
+#
 
 ############
 # Settings #
@@ -13,6 +15,22 @@
 #
 ROOT=/opt/licode
 
+# Path to shared docker volume
+#
+SRV=/srv/docker/licode
+
+# Path to erizo.js
+#
+ERIZO=erizo_controller/erizoClient/dist/production/erizo/erizo.js
+
+# Path to nuve.js
+#
+NUVE=nuve/nuveClient/dist/nuve.js
+
+# Path to licode_config.js
+#
+LICODE_CONFIG=licode_config.js
+
 ################################################################################
 ##############              Main routine starts here              ##############
 ################################################################################
@@ -20,11 +38,11 @@ ROOT=/opt/licode
 cd "${ROOT}" \
   || exit
 
-echo "Exporting Licode API."
-echo "Exporting Erizo API."
+until [[ -f ${ERIZO} && -f ${NUVE} && -f ${LICODE_CONFIG} ]]
+do echo "Waiting for licode to export its configuration..." && sleep 2
+done
+
 echo "Exporting Licode configuration."
-cp \
-        erizo_controller/erizoClient/dist/erizo.js \
-        nuve/nuveClient/dist/nuve.js \
-        licode_config.js \
-        /srv/docker/licode
+echo "Exporting Nuve API."
+echo "Exporting Erizo API."
+cp "${ERIZO}" "${NUVE}" "${LICODE_CONFIG}" "${SRV}"

@@ -24,21 +24,21 @@ SCRIPTS_DIR="${ROOT}/scripts"
 
 # Path to the configuration file.
 #
-CONFIG="${ROOT}/licode_config.js"
+CONFIG="${SCRIPTS_DIR}/licode_default.js"
+
+####################
+# File descriptors #
+####################
+
+# Append STDOUT to the config file.
+#
+exec >> "${CONFIG}"
 
 ################################################################################
 ##############              Main routine starts here              ##############
 ################################################################################
 
 echo "Writing Licode configuration" >&2
-
-[[ -f "$ROOT"/licode_config.js ]] \
-  || cp "${SCRIPTS_DIR}/licode_default.js" "${CONFIG}" \
-  || exit
-
-# Append STDOUT to the config file.
-#
-exec >> "${CONFIG}"
 
 # Spawn a maximum of one Erizo process per core, if no explicit limit is set.
 [[ -n ${MAXERIZOPROCESSES} ]] \

@@ -43,8 +43,7 @@ cd "${PATHNAME}" \
   || fail "${EX_CANTCREAT}" "Failed to write licode configuration."
 
 # Expose erizo.js, nuve.js and licode_config.js for tanura.
-./export.sh \
-  || fail "${EX_CANTCREAT}" "Failed to export configuration for tanura."
+./export.sh 2>&1 &
 
 # The failure condition can never normally occur. Safeguard exists
 # purely to avoid accidentally running the script on a development
