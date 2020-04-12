@@ -18,6 +18,7 @@ RUN npm install --no-optional
 USER root
 COPY . ${HOME}/tanura
 RUN chown -R app:app ${HOME}/*
+RUN chmod +x init.sh bin/wait-for-it.sh
 USER app
 ENTRYPOINT ["./init.sh"]
 
