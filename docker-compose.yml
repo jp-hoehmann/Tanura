@@ -4,7 +4,7 @@
 # Any configuration for Tanura production builds can be found here.
 #
 
-tanura1:
+tanura0:
   build: .
   env_file: .env
   links:
@@ -13,7 +13,7 @@ tanura1:
     - "3002"
   volumes:
     - licode1:/media/docker/licode:ro
-licode1:
+licode0:
   build: licode
   env_file: .env
   expose:
