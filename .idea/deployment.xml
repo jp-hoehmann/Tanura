@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="box">
+  <component name="PublishConfigData" serverName="tanura.hhmn.de">
     <serverData>
-      <paths name="box">
+      <paths name="tanura.hhmn.de">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
-            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>
