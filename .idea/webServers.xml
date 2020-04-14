@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="676ce913-b7f4-4aed-9f9b-72feaa1b3169" name="tanura.hhmn.de" url="http://tanura.hhmn.de">
-        <fileTransfer rootFolder="/home/jean-pierre/Tanura" accessType="SFTP" host="tanura.hhmn.de" port="22" sshConfigId="e2a79375-e61c-4a03-ac1a-ac23811a925b" sshConfig="jean-pierre@tanura.hhmn.de:22 key" keyPair="true">
+        <fileTransfer rootFolder="/opt/local/Tanura" accessType="SFTP" host="tanura.hhmn.de" port="22" sshConfigId="e2a79375-e61c-4a03-ac1a-ac23811a925b" sshConfig="root@tanura.hhmn.de:22 key" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

@@ -3,7 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig host="box" id="b7428cf9-6b63-471f-b86d-880366021ebb" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" customName="box" nameFormat="CUSTOM" username="jean-pierre" />
-      <sshConfig host="tanura.hhmn.de" id="e2a79375-e61c-4a03-ac1a-ac23811a925b" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" nameFormat="DESCRIPTIVE" username="jean-pierre" />
+      <sshConfig host="tanura.hhmn.de" id="e2a79375-e61c-4a03-ac1a-ac23811a925b" keyPath="$USER_HOME$/.ssh/id_rsa" port="22" nameFormat="DESCRIPTIVE" username="root" />
     </configs>
   </component>
 </project>
