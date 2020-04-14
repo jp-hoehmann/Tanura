@@ -3,8 +3,6 @@
 var app = require('../app');
 var debug = require('debug')('tanura:server');
 var http = require('http');
-var https = require('https');
-var fs = require('fs');
 
 /*
  * Node bootstrapping routine.
@@ -18,23 +16,7 @@ var port = normalizePort(process.env.TANURAPORT || '3000');
 app.set('port', port);
 
 // Create HTTP server.
-if (process.env.SSL) {
-    var certs = '/srv/www/tanura/certs/';
-    var server = https.createServer(
-        {
-            key:
-                fs
-                .readFileSync(certs + 'localhost.localdomain.key.pem')
-                .toString(),
-            cert:
-                fs
-                .readFileSync(certs + 'localhost.localdomain.cert.pem')
-                .toString()
-        },
-        app);
-} else {
-    var server = http.createServer(app);
-}
+var server = http.createServer(app);
 
 // Listen on provided port, on all network interfaces.
 server.listen(port);
