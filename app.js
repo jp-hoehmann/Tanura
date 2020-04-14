@@ -2,12 +2,9 @@
 
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var frontend = require('./routes/index');
 var nuve = require('./routes/nuve');
 
 /*
@@ -22,7 +19,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +26,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes setup.
-app.use('/', frontend);
 app.use('/nuve/', nuve);
 
 // HTTP headers added to every response.
@@ -38,7 +33,7 @@ app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE');
     res.header('Access-Control-Allow-Headers', 'origin, content-type');
-    if (req.method == 'OPTIONS') {
+    if (req.method === 'OPTIONS') {
         res.send(200);
     } else {
         next();
