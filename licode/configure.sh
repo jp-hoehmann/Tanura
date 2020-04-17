@@ -48,7 +48,6 @@ echo "Writing Licode configuration" >&2
 
 # Set config options.
 echo
-echo 'config.erizoController.iceServers = [];'
 echo "config.erizoController.hostname = '${LICODEHOSTNAME}';"
 if [[ -n ${MAXVIDEOBW} ]]
 then
