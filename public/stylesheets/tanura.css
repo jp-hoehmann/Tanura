@@ -1,0 +1,9 @@
+/*
+ * Tanura styling.
+ *
+ * This is a stylesheet containing style definitions that are useful for most clients.
+ */
+
+.licode_bar {
+    display: none!important;
+}
