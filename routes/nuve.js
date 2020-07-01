@@ -117,7 +117,7 @@ const cleanRooms = (callback) => {
         });
     }, (err) => {
         console.log('Error cleaning example rooms', err);
-        setTimeout(cleanRooms().bind(this, callback), 3000);
+        setTimeout(cleanRooms.bind(this, callback), 3000);
     });
 };
 
